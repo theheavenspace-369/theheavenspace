@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "id": 27,
+            "layout_key": "test-villas",
+            "location_name": "Villa Experience Demo",
+            "title": "Villa Experience Demo",
+            "description": "Super Villas and reality",
+            "layout_file": "construction-project-test.png",
+            "is_active": 1,
+            "sort_order": 90,
+            "created_at": "2026-08-05 12:44:31",
+            "layout_code": "TEST-VILLA",
+            "vendor_id": "001c6413-81d1-11f1-87aa-04cf4ba169a8",
+            "project_category": "609a177e-8333-11f1-87aa-04cf4ba169a8",
+            "video_url": null,
+            "cover_image": null,
+            "cover_image_updated_at": null,
+            "gallery_items": null,
+            "events": null,
+            "category_name": "Villas",
+            "category_type": "Villa",
+            "file_available": true
+        }
+    ],
+    "error": null
+}

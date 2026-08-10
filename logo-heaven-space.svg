@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 650" role="img" aria-labelledby="title desc">
+  <title id="title">The Heaven Space logo</title>
+  <desc id="desc">Stylized HS monogram with high-rise building and The Heaven Space wordmark.</desc>
+  <rect width="520" height="650" fill="#fff"/>
+  <g transform="translate(78 44)">
+    <path d="M50 90l34 34v300l-34 29zM356 124l34-34v363l-34-29z" fill="#12335f"/>
+    <path d="M84 272l52-24v30l-52 28zM356 306l-64-32v-32l64 30z" fill="#12335f"/>
+
+    <path d="M182 72l54-52 52 54v356H182z" fill="#2ea8dc"/>
+    <path d="M143 144l34-34v320h-34zM296 110l36 36v284h-36z" fill="#2ea8dc"/>
+    <path d="M209 33v392M248 35v392M178 84v346M292 96v334M323 158v272" stroke="#fff" stroke-width="5" opacity=".88"/>
+    <path d="M238 195h46v200h-46z" fill="#79ddf3" opacity=".72"/>
+    <path d="M250 206v176M270 224v155" stroke="#1e9fd1" stroke-width="4"/>
+    <path d="M246 204l58 60v132l-58-34z" fill="none" stroke="#fff" stroke-width="6"/>
+
+    <path d="M308 185c-31-31-89-42-133-18-44 25-42 73-4 102 26 20 66 42 97 65 47 35 48 98 2 129-43 30-131 20-190 62 39-55 145-37 172-70 26-32 6-64-31-88-33-22-78-43-106-72-39-39-23-94 27-122 52-29 122-18 166 12z" fill="#06a94f"/>
+    <path d="M292 205c-24-21-72-29-108-9-31 17-31 47-1 70 25 19 67 42 98 66 53 42 50 111-8 143" fill="none" stroke="#fff" stroke-width="7"/>
+  </g>
+
+  <g transform="translate(70 500)">
+    <path d="M0 0h160M220 0h160M0 52h160M220 52h160" stroke="#2ea8dc" stroke-width="3"/>
+    <text x="190" y="13" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#0f172a">THE</text>
+    <text x="190" y="52" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="700" fill="#07382e">HEAVEN SPACE</text>
+    <path d="M190 64l5 10 11 1-8 8 2 11-10-5-10 5 2-11-8-8 11-1z" fill="#06a94f"/>
+    <text x="190" y="94" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#08722e">FIND YOUR PLACE IN PARADISE</text>
+    <path d="M122 110c24 24 111 24 136 0M148 113c10 16 23 13 34 2M232 115c-13 13-27 15-38 2" fill="none" stroke="#2f7d32" stroke-width="3"/>
+    <path d="M185 111h10v12h-10zM190 101l13 10h-26z" fill="#2f7d32"/>
+    <path d="M190 111v12M185 117h10" stroke="#fff" stroke-width="1.5"/>
+  </g>
+</svg>

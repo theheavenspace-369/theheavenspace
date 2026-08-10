@@ -1,0 +1,6 @@
+# Local tooling settings
+.claude/settings.local.json
+
+# OS / editor cruft
+Thumbs.db
+.DS_Store

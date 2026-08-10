@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <title>Contact Us | The Heaven Space</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="../styles.css" rel="stylesheet">
+  <style>
+    body.page-contact { background: #ffffff; min-height: 100vh; }
+    .text-strong { color: #111827; }
+
+    .contact-hero-modern {
+      position: relative;
+      min-height: 440px;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 24px 70px rgba(14, 46, 80, 0.25);
+      margin-bottom: 3.5rem;
+    }
+    .contact-hero-modern .hero-media { position: absolute; inset: 0; z-index: 0; }
+    .contact-hero-modern .hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .contact-hero-modern .hero-media::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(14,46,80,.93) 0%, rgba(14,46,80,.68) 48%, rgba(0,185,142,.22) 100%);
+    }
+    .contact-hero-modern .hero-content { position: relative; z-index: 1; color: #fff; padding: clamp(2rem, 5vw, 4rem); max-width: 700px; }
+    .contact-hero-modern h1 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 900; line-height: 1.16; margin: 0.75rem 0 1rem; }
+    .contact-hero-modern h1 span { background: linear-gradient(135deg, #4de8c9, #00b98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .contact-hero-modern p.lead-copy { color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 560px; }
+    .contact-hero-quicklinks { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 1.75rem; }
+    .contact-hero-quicklinks div { padding-left: 1rem; border-left: 2px solid rgba(255,255,255,0.3); }
+    .contact-hero-quicklinks strong { display: block; font-size: 0.95rem; }
+    .contact-hero-quicklinks span { display: block; font-size: 0.76rem; color: rgba(255,255,255,0.7); }
+
+    .contact-pill { display: inline-flex; padding: 0.55rem 1rem; border-radius: 9999px; background: rgba(0, 185, 142, 0.1); color: #049080; font-weight: 700; font-size: 0.85rem; }
+    .contact-info li::marker { color: #00b98e; }
+
+    .follow-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; border-radius: 9999px; background: #fff; border: 1px solid rgba(14, 46, 80, 0.1); color: #0e2e50; font-weight: 600; font-size: .85rem; box-shadow: 0 8px 20px rgba(14, 46, 80, 0.08); transition: all .25s ease; }
+    .follow-pill:hover { background: rgba(0, 185, 142, 0.1); color: #049080; transform: translateY(-2px); }
+
+    .contact-info-card { background: #fff; border-radius: 20px; padding: 1.5rem; box-shadow: 0 16px 40px rgba(14, 46, 80, 0.1); }
+    .contact-info-card .icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: .9rem; background: rgba(0,185,142,.12); color: #00b98e; }
+
+    .contact-form-card { border-radius: 24px; box-shadow: 0 24px 60px rgba(14, 46, 80, 0.14); border: none; }
+    .contact-form-card .form-control, .contact-form-card .form-select { border-radius: 12px; padding: .7rem 1rem; border-color: #e2e8f0; }
+    .contact-form-card .form-control:focus, .contact-form-card .form-select:focus { border-color: #00b98e; box-shadow: 0 0 0 .2rem rgba(0, 185, 142, .15); }
+    .contact-form-card .btn-primary { border-radius: 12px; padding: .85rem 2rem; }
+
+    .overview-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .overview-strip figure { position: relative; margin: 0; border-radius: 22px; overflow: hidden; box-shadow: 0 16px 40px rgba(14, 46, 80, 0.14); }
+    .overview-strip img { width: 100%; height: 260px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .overview-strip figure:hover img { transform: scale(1.06); }
+    .overview-strip figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.1rem; background: linear-gradient(180deg, transparent, rgba(14, 46, 80, 0.85)); color: #fff; font-weight: 800; }
+
+    @media (max-width: 900px) { .overview-strip { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="page-contact">
+  <style id="tenant-theme">:root{--tenant-primary:#00b98e;--tenant-secondary:#ff6922;--tenant-header-bg:#ffffff;--tenant-body-bg:#effdf5;--tenant-radius:14px;--bs-primary:var(--tenant-primary);--bs-primary-rgb:0,185,142;--bs-link-color:var(--tenant-primary);--bs-link-color-rgb:var(--bs-primary-rgb);--bs-link-hover-color:var(--tenant-primary);--bs-link-hover-color-rgb:var(--bs-primary-rgb)}body{background-color:var(--tenant-body-bg)!important}.app-shell-header{background:var(--tenant-header-bg)!important}.btn-primary{background-color:var(--tenant-primary);border-color:var(--tenant-primary)}.btn-outline-primary{color:var(--tenant-primary);border-color:var(--tenant-primary)}.btn-outline-primary:hover{background-color:var(--tenant-primary);border-color:var(--tenant-primary)}.text-primary{color:var(--tenant-primary)!important}.border-primary{border-color:var(--tenant-primary)!important}a:not(.btn):not([class*="nav-"]):not([class*="dropdown-"]):not([class*="footer-"]):not(.navbar-brand){color:var(--tenant-primary)}</style><div class="demo-watermark" aria-hidden="true">FOR DEMO WEBSITE</div>
+<nav class="navbar navbar-expand-lg navbar-light app-shell-header px-4 py-3" role="banner">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="../">
+      <img class="site-logo" src="../logo-heaven-space.svg" alt="The Heaven Space">
+      <span class="fw-bold">The Heaven Space</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbar" aria-controls="siteNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="siteNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                                        <li class="nav-item"><a class="nav-link" href="../"><i class="bi bi-house-door-fill me-1" aria-hidden="true"></i>Home</a></li>
+                                                  <li class="nav-item dropdown menu-dropdown">
+              <a class="nav-link dropdown-toggle" href="../about/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-buildings-fill me-1" aria-hidden="true"></i>Company</a>
+              <div class="dropdown-menu advanced-menu">
+                                  <a class="dropdown-item" href="../about/">
+                    <span><i class="bi bi-info-circle-fill me-2" aria-hidden="true"></i>About Us</span>
+                    <small>Culture, mission, and leadership</small>                  </a>
+                                  <a class="dropdown-item" href="../careers/">
+                    <span><i class="bi bi-briefcase-fill me-2" aria-hidden="true"></i>Careers</span>
+                    <small>Join our real estate technology team</small>                  </a>
+                              </div>
+            </li>
+                                                  <li class="nav-item dropdown menu-dropdown">
+              <a class="nav-link dropdown-toggle" href="../services/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-houses-fill me-1" aria-hidden="true"></i>Real Estate</a>
+              <div class="dropdown-menu advanced-menu advanced-menu-wide">
+                                  <a class="dropdown-item" href="../services/">
+                    <span><i class="bi bi-grid-fill me-2" aria-hidden="true"></i>Services</span>
+                    <small>Digital tools for owners, buyers, and vendors</small>                  </a>
+                                  <a class="dropdown-item" href="../layout-map/?type=open-plot">
+                    <span><i class="bi bi-map-fill me-2" aria-hidden="true"></i>Open Plots</span>
+                    <small>Open plots </small>                  </a>
+                                  <a class="dropdown-item" href="../villas/">
+                    <span><i class="bi bi-house-heart-fill me-2" aria-hidden="true"></i>Villas</span>
+                    <small>Rooms, parking, facilities, status and reservations</small>                  </a>
+                                  <a class="dropdown-item" href="../construction-plots/">
+                    <span><i class="bi bi-building-fill me-2" aria-hidden="true"></i>Construction Plots</span>
+                    <small>Project inventory with available, reserved and sold plots</small>                  </a>
+                                  <a class="dropdown-item" href="../careers/">
+                    <span><i class="bi bi-people-fill me-2" aria-hidden="true"></i>Join Our Team</span>
+                    <small>Partner with us across real estate and construction</small>                  </a>
+                              </div>
+            </li>
+                                                  <li class="nav-item"><a class="nav-link active" href="../contact/"><i class="bi bi-telephone-fill me-1" aria-hidden="true"></i>Contact</a></li>
+                          
+                  <li class="nav-item ms-lg-2"><a class="btn btn-primary nav-cta" href="../layout-map/"><i class="bi bi-search-heart-fill me-1" aria-hidden="true"></i>Explore Properties</a></li>
+                &nbsp;&nbsp; 
+        <li class="nav-item promo-notify-item ms-lg-2" id="promoNotifyItem">
+          <button type="button" class="promo-notify-btn" id="promoNotifyButton" aria-haspopup="true" aria-expanded="false" aria-label="Latest update">
+            <i class="bi bi-bell-fill"></i>
+            <span class="promo-notify-dot"></span>
+          </button>
+          <div class="promo-notify-panel" id="promoNotifyPanel">
+            <div class="promo-notify-panel-head">
+              <span><i class="bi bi-megaphone-fill me-1 text-primary"></i>Latest update</span>
+              <button type="button" class="btn-close" id="promoNotifyClose" aria-label="Close"></button>
+            </div>
+            <img id="promoNotifyImage" src="" alt="Latest update">
+            <div class="promo-notify-caption" id="promoNotifyCaption"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollEl = document.querySelector('.app-shell-main');
+    const toggleHeaderState = () => {
+      const scrollTop = scrollEl ? scrollEl.scrollTop : window.scrollY;
+      document.body.classList.toggle('scrolled', scrollTop > 12);
+    };
+    const scrollTargets = [window];
+    if (scrollEl) {
+      scrollTargets.push(scrollEl);
+    }
+    scrollTargets.forEach(target => target.addEventListener('scroll', toggleHeaderState, { passive: true }));
+    toggleHeaderState();
+
+    // Updates bell: lets a visitor see the currently published brochure/offer
+    // image from any page, with a pulsing dot until they open it once.
+    (async () => {
+      const item = document.getElementById('promoNotifyItem');
+      const button = document.getElementById('promoNotifyButton');
+      const panel = document.getElementById('promoNotifyPanel');
+      const closeButton = document.getElementById('promoNotifyClose');
+      const image = document.getElementById('promoNotifyImage');
+      const caption = document.getElementById('promoNotifyCaption');
+      if (!item || !button || !panel) return;
+
+      try {
+        const response = await fetch('/jana_venture_project/api/promotions');
+        const result = await response.json();
+        const promo = result.data;
+        if (!promo || !promo.image) return;
+
+        const seenKey = 'ths_promo_seen_' + promo.id;
+        image.src = '/jana_venture_project/uploads/promotions/' + encodeURIComponent(promo.image);
+        image.alt = promo.title || 'Latest update';
+        if (promo.title) {
+          caption.textContent = promo.title;
+          caption.classList.remove('d-none');
+        } else {
+          caption.classList.add('d-none');
+        }
+
+        item.classList.remove('d-none');
+        if (!localStorage.getItem(seenKey)) {
+          item.classList.add('has-update');
+        }
+
+        const closePanel = () => {
+          panel.classList.remove('show');
+          button.setAttribute('aria-expanded', 'false');
+        };
+
+        button.addEventListener('click', event => {
+          event.stopPropagation();
+          const isOpen = panel.classList.toggle('show');
+          button.setAttribute('aria-expanded', String(isOpen));
+          if (isOpen) {
+            item.classList.remove('has-update');
+            try { localStorage.setItem(seenKey, '1'); } catch (error) { /* ignore storage errors (private mode, etc.) */ }
+          }
+        });
+        closeButton?.addEventListener('click', event => { event.stopPropagation(); closePanel(); });
+        image.addEventListener('click', () => window.open(image.src, '_blank', 'noopener'));
+        document.addEventListener('click', event => { if (!item.contains(event.target)) closePanel(); });
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') closePanel(); });
+      } catch (error) {
+        // A missing/failed promotions fetch should never break navigation.
+        console.error('Unable to load the latest update:', error);
+      }
+    })();
+  });
+</script>
+
+  <main class="container-fluid px-4 py-5 page-shell app-shell-main">
+
+    <!-- Hero -->
+    <section class="contact-hero-modern">
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=2200&q=88" alt="Get in touch with our team" fetchpriority="high">
+      </div>
+      <div class="hero-content">
+        <p class="hero-caption mb-0" style="color:#a7f3e2;text-transform:uppercase;font-weight:700;letter-spacing:.06em;font-size:.85rem;"><i class="bi bi-headset"></i> Contact Us</p>
+        <h1>For architects, vendors, and land owners — <span>let's talk</span>.</h1>
+        <p class="lead-copy">An Amazon for land owners and building construction industry professionals. Contact us now to know more!</p>
+        <div class="contact-hero-quicklinks">
+          <div><strong>89854 48044</strong><span>Call or WhatsApp</span></div>
+          <div><strong>info@theheavenspace.com</strong><span>Email us</span></div>
+          <div><strong>Dilshukhnagar, Hyderabad</strong><span>Visit our office</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form + info -->
+    <section class="row g-4 mb-5">
+      <div class="col-lg-7">
+        <div class="card contact-form-card p-4 p-md-5">
+          <span class="contact-pill mb-3 d-inline-block">Get In Touch</span>
+          <h2 class="h4 fw-bold mb-4">Send us a message</h2>
+          <form action="/jana_venture_project/api/contacts" method="post" class="needs-validation" novalidate>
+            <input type="hidden" name="source" value="contact_page">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name *</label>
+              <input type="text" class="form-control" id="name" name="full_name" required>
+              <div class="invalid-feedback">Please provide your name.</div>
+            </div>
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile Number *</label>
+              <input type="tel" class="form-control" id="mobile" name="mobile" required>
+              <div class="invalid-feedback">Please provide your mobile number.</div>
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address *</label>
+              <input type="text" class="form-control" id="address" name="address" required>
+              <div class="invalid-feedback">Please provide your address.</div>
+            </div>
+            <div class="mb-3">
+              <label for="requirement" class="form-label">Requirement *</label>
+              <select class="form-select" id="requirement" name="requirement" required>
+                <option value="" selected disabled>Select your requirement</option>
+                <option value="layout_enquiry">Layout Enquiry</option>
+                <option value="construction_services">Construction Services</option>
+                <option value="architecture_services">Architecture Services</option>
+                <option value="interior_design_services">Interior Design Services</option>
+                <option value="vendor_services">Vendor Services</option>
+                <option value="partnership_opportunity">Partnership Opportunity</option>
+                <option value="general_inquiry">General Inquiry</option>
+                <option value="site_visit_request">Site Visit Request</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="invalid-feedback">Please provide your requirement.</div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email *</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+              <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="d-flex flex-column gap-4 h-100">
+          <div class="contact-info-card">
+            <h3 class="h6 fw-bold mb-3">Why partner with us?</h3>
+            <p class="text-muted small">We are creating a trusted digital marketplace for land owners, construction vendors, architects, and interior design professionals.</p>
+            <ul class="text-muted small mb-0 contact-info ps-3">
+              <li>Online presence for every real estate business</li>
+              <li>Marketplace access for local and global customers</li>
+              <li>Transparent, user-friendly digital solutions</li>
+            </ul>
+          </div>
+          <div class="row g-3">
+            <div class="col-sm-6 col-lg-12">
+              <div class="contact-info-card">
+                <div class="icon"><i class="bi bi-geo-alt-fill"></i></div>
+                <h3 class="h6 fw-bold mb-1">Office Address</h3>
+                <p class="text-muted small mb-0"><strong class="text-strong">A. Janardhan</strong><br>Vijayasanthi Homes, Dilshukhnagar, Hyderabad - 500060</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-12">
+              <div class="contact-info-card">
+                <div class="icon"><i class="bi bi-envelope-fill"></i></div>
+                <h3 class="h6 fw-bold mb-1">Reach Out</h3>
+                <p class="text-muted small mb-0"><strong class="text-strong">Email:</strong> info@theheavenspace.com<br><strong class="text-strong">Contact:</strong> 89854 48044</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="follow-pill"><i class="bi bi-facebook"></i> Facebook</span>
+            <span class="follow-pill"><i class="bi bi-instagram"></i> Instagram</span>
+            <span class="follow-pill"><i class="bi bi-linkedin"></i> LinkedIn</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="mb-5">
+      <div class="text-center mx-auto mb-4" style="max-width: 620px;">
+        <p class="hero-caption text-primary mb-2"><i class="bi bi-images"></i> Project Overview</p>
+        <h2 class="fw-bold" style="font-size:2.1rem;color:#0e2e50;">The people and places behind every enquiry</h2>
+      </div>
+      <div class="overview-strip">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=85" alt="Successful client consultation" loading="lazy">
+          <figcaption>In-person Consultations</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=85" alt="Modern residence exterior" loading="lazy">
+          <figcaption>Guided Site Visits</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=85" alt="Partnership handshake" loading="lazy">
+          <figcaption>Trusted Partnerships</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="site-footer mt-5">
+      <div class="card footer-card p-4" style="background: linear-gradient(135deg, #0e2e50 0%, #00b98e 100%); color: white; border: none;">
+        <div class="row align-items-center">
+          <div class="col-md">
+            <h3 class="h5 mb-1">Join India's growing real estate network</h3>
+            <p class="mb-0 opacity-85">Architects, vendors, and professionals are already connecting and growing with us. Don't miss out!</p>
+          </div>
+          <div class="col-md-auto mt-3 mt-md-0">
+            <a href="../services/" class="btn btn-light">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <footer class="global-footer app-shell-footer">
+  <div class="container-fluid px-4">
+    <div class="global-footer-panel">
+      <div class="row gy-4 align-items-start">
+        <div class="col-lg-5">
+          <a class="footer-brand" href="../">
+            <img src="../logo-heaven-space.svg" alt="The Heaven Space">
+            <span>The Heaven Space</span>
+          </a>
+          <p class="footer-copy mt-3 mb-0">
+            A digital real estate platform for layouts, property owners, building professionals, and buyers.          </p>
+          <div class="footer-chip-row mt-3">
+            <span class="footer-chip">Trusted</span><span class="footer-chip">Modern</span><span class="footer-chip">Transparent</span>          </div>
+                            </div>
+
+                  <div class="col-6 col-lg-2">
+            <h2 class="footer-heading">Pages</h2>
+            <ul class="footer-links">
+                              <li><a href="../"><i class="bi bi-house-door me-2" aria-hidden="true"></i>Home</a></li>
+                              <li><a href="../about/"><i class="bi bi-info-circle me-2" aria-hidden="true"></i>About</a></li>
+                              <li><a href="../services/"><i class="bi bi-grid me-2" aria-hidden="true"></i>Services</a></li>
+                              <li><a href="../careers/"><i class="bi bi-briefcase me-2" aria-hidden="true"></i>Careers</a></li>
+                          </ul>
+          </div>
+                  <div class="col-6 col-lg-2">
+            <h2 class="footer-heading">Layouts</h2>
+            <ul class="footer-links">
+                              <li><a href="../layout-map/"><i class="bi bi-map me-2" aria-hidden="true"></i>Explore Properties</a></li>
+                              <li><a href="../contact/"><i class="bi bi-chat-dots me-2" aria-hidden="true"></i>Enquire</a></li>
+                          </ul>
+          </div>
+        
+        <div class="col-lg-3">
+          <h2 class="footer-heading">Contact</h2>
+          <p class="footer-copy mb-2">Vijayasanthi Homes, Dilshukhnagar, Hyderabad - 500060</p>
+          <p class="footer-copy mb-2">info@theheavenspace.com</p>
+          <p class="footer-copy mb-0">89854 48044</p>
+        </div>
+      </div>
+
+      <!-- <div class="footer-bottom">
+        <span>&copy; 2026 The Heaven Space. All rights reserved.</span>
+        <a class="footer-admin-link" href="/jana_venture_project/admin/login" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-shield-lock me-1"></i>Admin Portal
+        </a>
+      </div> -->
+    </div>
+  </div>
+</footer>
+<a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+<div class="cookie-consent" id="cookieConsent" role="dialog" aria-modal="true" aria-labelledby="cookieConsentTitle" hidden>
+  <div class="cookie-consent-copy">
+    <strong id="cookieConsentTitle"><i class="bi bi-shield-check me-2"></i>Your privacy choices</strong>
+    <p>We use an optional first-party cookie to record one initial visit and understand advertising performance. Cookies cannot access your Google name or email. Google details are shared only if you explicitly use Google Sign-In.</p>
+  </div>
+  <div class="cookie-consent-actions">
+    <button class="btn btn-outline-light" id="rejectCookies" type="button">Reject optional cookies</button>
+    <button class="btn btn-light" id="acceptCookies" type="button">Accept cookies</button>
+  </div>
+</div>
+<style>
+  .cookie-consent{position:fixed;z-index:1090;left:1rem;right:1rem;bottom:calc(var(--site-footer-height, 100px) + 1rem);max-width:980px;margin:auto;padding:1.15rem 1.25rem;border-radius:18px;background:#102820;color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;transition:bottom .2s ease}
+  .cookie-consent[hidden]{display:none}.cookie-consent-copy{max-width:650px}.cookie-consent-copy strong{display:block;margin-bottom:.35rem}.cookie-consent-copy p{margin:0;color:rgba(255,255,255,.75);font-size:.88rem}.cookie-consent-actions{display:flex;gap:.65rem;flex:0 0 auto}.cookie-consent-actions .btn{white-space:nowrap}
+  @media(max-width:767px){.cookie-consent{align-items:stretch;flex-direction:column}.cookie-consent-actions{display:grid;grid-template-columns:1fr}.cookie-consent-actions .btn{width:100%}}
+</style>
+<script>
+  (() => {
+    const setFooterOffset = () => {
+      const footer = document.querySelector('.app-shell-footer');
+      if (footer) document.documentElement.style.setProperty('--site-footer-height', `${footer.offsetHeight}px`);
+    };
+    setFooterOffset();
+    window.addEventListener('resize', setFooterOffset, { passive: true });
+    const footerEl = document.querySelector('.app-shell-footer');
+    if (footerEl) new ResizeObserver(setFooterOffset).observe(footerEl);
+
+    const consent = document.getElementById('cookieConsent');
+    const readCookie = name => document.cookie.split('; ').find(row => row.startsWith(`${name}=`))?.split('=')[1] || '';
+    if (!readCookie('ths_cookie_consent')) consent.hidden = false;
+    const saveConsent = accepted => {
+      const secure = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `ths_cookie_consent=${accepted ? 'accepted' : 'rejected'}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
+      if (!accepted) document.cookie = `ths_visitor_id=; Max-Age=0; Path=/; SameSite=Lax${secure}`;
+      consent.hidden = true;
+      if (accepted) location.reload();
+    };
+    document.getElementById('acceptCookies')?.addEventListener('click', () => saveConsent(true));
+    document.getElementById('rejectCookies')?.addEventListener('click', () => saveConsent(false));
+
+    const backToTop = document.getElementById('backToTop');
+    const scrollHost = document.querySelector('.app-shell-main');
+    const toggleBackToTop = () => {
+      const scrollTop = scrollHost ? scrollHost.scrollTop : window.scrollY;
+      backToTop?.classList.toggle('show', scrollTop > 300);
+    };
+    const scrollHosts = [window];
+    if (scrollHost) scrollHosts.push(scrollHost);
+    scrollHosts.forEach(target => target.addEventListener('scroll', toggleBackToTop, { passive: true }));
+    toggleBackToTop();
+    backToTop?.addEventListener('click', event => {
+      event.preventDefault();
+      (scrollHost || window).scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/protection.js"></script>
+  <script>
+    (() => {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+
+  </script>
+</body>
+</html>

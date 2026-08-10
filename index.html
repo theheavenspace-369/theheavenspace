@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <title>Kubera Township | The Heaven Space</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="styles.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #00b98e, #049080);
+      --success-gradient: linear-gradient(135deg, #16a34a, #22c55e);
+      --warning-gradient: linear-gradient(135deg, #f59e0b, #facc15);
+    }
+
+    body.page-home {
+      background: #ffffff;
+      min-height: 100vh;
+    }
+
+    /* Hero: ultra-high-resolution photo background with real (always-sharp)
+       HTML text overlay, instead of text baked into a raster image. */
+    .hero-modern {
+      position: relative;
+      min-height: 620px;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 24px 70px rgba(14, 46, 80, 0.28);
+      margin-bottom: 2rem;
+    }
+
+    .hero-modern-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-modern-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-modern-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(14,46,80,.88) 0%, rgba(14,46,80,.62) 42%, rgba(14,46,80,.18) 75%, transparent 100%);
+    }
+
+    .hero-modern-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      padding: clamp(2rem, 5vw, 4.5rem);
+      max-width: 760px;
+    }
+
+    .hero-modern-content h1 {
+      font-size: clamp(2.4rem, 5vw, 3.75rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin: 0.75rem 0 1rem;
+    }
+
+    .hero-modern-content h1 span {
+      background: linear-gradient(135deg, #4de8c9, #00b98e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-modern-sub {
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: #e6fff7;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-modern-tagline {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.1rem;
+      max-width: 480px;
+    }
+
+    .hero-feature-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      margin: 1.75rem 0;
+    }
+
+    .hero-feature-row > div {
+      padding-left: 1rem;
+      border-left: 2px solid rgba(255,255,255,0.28);
+    }
+
+    .hero-feature-row i {
+      display: block;
+      font-size: 1.3rem;
+      color: #4de8c9;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-feature-row strong {
+      display: block;
+      font-size: 0.92rem;
+    }
+
+    .hero-feature-row span {
+      display: block;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 767.98px) {
+      .hero-modern { min-height: 540px; }
+      .hero-modern-media::after { background: linear-gradient(180deg, rgba(14,46,80,.35) 0%, rgba(14,46,80,.9) 100%); }
+    }
+
+    .hero-caption {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .estate-stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 1.75rem auto 0;
+      max-width: 760px;
+    }
+
+    .estate-stat {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(14, 46, 80, 0.1);
+      text-align: center;
+      border: 1px dashed rgba(0, 185, 142, 0.35);
+    }
+
+    .estate-stat strong {
+      font-size: 24px;
+      display: block;
+      color: #0e2e50;
+      margin-bottom: 8px;
+    }
+
+    .estate-stat span {
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #0e2e50;
+    }
+
+    .cat-item {
+      display: block;
+      text-decoration: none;
+      background: #fff;
+      border: 1px dashed rgba(0, 185, 142, 0.35);
+      border-radius: 18px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: 0.35s;
+      height: 100%;
+    }
+
+    .cat-item:hover {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0, 185, 142, 0.28);
+    }
+
+    .cat-item .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0, 185, 142, 0.1);
+      color: #00b98e;
+      font-size: 1.6rem;
+      transition: 0.35s;
+    }
+
+    .cat-item:hover .icon {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .cat-item h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0e2e50;
+      margin-bottom: 0.3rem;
+      transition: 0.35s;
+    }
+
+    .cat-item span {
+      color: #64748b;
+      font-size: 0.85rem;
+      transition: 0.35s;
+    }
+
+    .cat-item:hover h3,
+    .cat-item:hover span {
+      color: #fff;
+    }
+
+    /* Project gallery: modern asymmetric image grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 14px 40px rgba(14, 46, 80, 0.14);
+    }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(14, 46, 80, 0.75));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    .gallery-item span {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      color: #fff;
+      font-weight: 800;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover span {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 200px);
+      }
+      .gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+
+    .about-visual {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 460px;
+      box-shadow: 0 24px 60px rgba(14, 46, 80, 0.2);
+    }
+
+    .about-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+
+    .about-checklist p {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .about-checklist i {
+      color: #00b98e;
+      margin-top: 0.2rem;
+    }
+
+    .card-3d {
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+      box-shadow: 0 12px 40px rgba(14, 46, 80, 0.08);
+      border: 1px dashed rgba(0, 185, 142, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-3d::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card-3d:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(14, 46, 80, 0.15);
+    }
+
+    .card-3d:hover::before {
+      transform: scaleX(1);
+    }
+
+    .badge {
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 8px;
+    }
+
+    .footer-card {
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0, 185, 142, 0.2);
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(14, 46, 80, 0.92), rgba(0, 185, 142, 0.82)),
+        url("https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1920&q=85") center/cover no-repeat;
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      font-size: 28px;
+    }
+
+    .feature-icon.primary {
+      background: rgba(0, 185, 142, 0.15);
+      color: #00b98e;
+    }
+
+    .feature-icon.success {
+      background: rgba(22, 163, 74, 0.15);
+      color: #16a34a;
+    }
+
+    .feature-icon.warning {
+      background: rgba(255, 105, 34, 0.15);
+      color: #ff6922;
+    }
+
+    .feature-icon.danger {
+      background: rgba(14, 46, 80, 0.12);
+      color: #0e2e50;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .estate-stat-strip {
+        grid-template-columns: 1fr;
+      }
+      .about-visual {
+        min-height: 280px;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 220px);
+      }
+      .gallery-item:first-child {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+    .par-center{
+          display: flex;
+          align-items: center;
+    }
+  </style>
+</head>
+<body class="page-home">
+  <style id="tenant-theme">:root{--tenant-primary:#00b98e;--tenant-secondary:#ff6922;--tenant-header-bg:#ffffff;--tenant-body-bg:#effdf5;--tenant-radius:14px;--bs-primary:var(--tenant-primary);--bs-primary-rgb:0,185,142;--bs-link-color:var(--tenant-primary);--bs-link-color-rgb:var(--bs-primary-rgb);--bs-link-hover-color:var(--tenant-primary);--bs-link-hover-color-rgb:var(--bs-primary-rgb)}body{background-color:var(--tenant-body-bg)!important}.app-shell-header{background:var(--tenant-header-bg)!important}.btn-primary{background-color:var(--tenant-primary);border-color:var(--tenant-primary)}.btn-outline-primary{color:var(--tenant-primary);border-color:var(--tenant-primary)}.btn-outline-primary:hover{background-color:var(--tenant-primary);border-color:var(--tenant-primary)}.text-primary{color:var(--tenant-primary)!important}.border-primary{border-color:var(--tenant-primary)!important}a:not(.btn):not([class*="nav-"]):not([class*="dropdown-"]):not([class*="footer-"]):not(.navbar-brand){color:var(--tenant-primary)}</style><div class="demo-watermark" aria-hidden="true">FOR DEMO WEBSITE</div>
+<nav class="navbar navbar-expand-lg navbar-light app-shell-header px-4 py-3" role="banner">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="./">
+      <img class="site-logo" src="logo-heaven-space.svg" alt="The Heaven Space">
+      <span class="fw-bold">The Heaven Space</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbar" aria-controls="siteNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="siteNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                                        <li class="nav-item"><a class="nav-link active" href="./"><i class="bi bi-house-door-fill me-1" aria-hidden="true"></i>Home</a></li>
+                                                  <li class="nav-item dropdown menu-dropdown">
+              <a class="nav-link dropdown-toggle" href="about/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-buildings-fill me-1" aria-hidden="true"></i>Company</a>
+              <div class="dropdown-menu advanced-menu">
+                                  <a class="dropdown-item" href="about/">
+                    <span><i class="bi bi-info-circle-fill me-2" aria-hidden="true"></i>About Us</span>
+                    <small>Culture, mission, and leadership</small>                  </a>
+                                  <a class="dropdown-item" href="careers/">
+                    <span><i class="bi bi-briefcase-fill me-2" aria-hidden="true"></i>Careers</span>
+                    <small>Join our real estate technology team</small>                  </a>
+                              </div>
+            </li>
+                                                  <li class="nav-item dropdown menu-dropdown">
+              <a class="nav-link dropdown-toggle" href="services/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-houses-fill me-1" aria-hidden="true"></i>Real Estate</a>
+              <div class="dropdown-menu advanced-menu advanced-menu-wide">
+                                  <a class="dropdown-item" href="services/">
+                    <span><i class="bi bi-grid-fill me-2" aria-hidden="true"></i>Services</span>
+                    <small>Digital tools for owners, buyers, and vendors</small>                  </a>
+                                  <a class="dropdown-item" href="layout-map/?type=open-plot">
+                    <span><i class="bi bi-map-fill me-2" aria-hidden="true"></i>Open Plots</span>
+                    <small>Open plots </small>                  </a>
+                                  <a class="dropdown-item" href="villas/">
+                    <span><i class="bi bi-house-heart-fill me-2" aria-hidden="true"></i>Villas</span>
+                    <small>Rooms, parking, facilities, status and reservations</small>                  </a>
+                                  <a class="dropdown-item" href="construction-plots/">
+                    <span><i class="bi bi-building-fill me-2" aria-hidden="true"></i>Construction Plots</span>
+                    <small>Project inventory with available, reserved and sold plots</small>                  </a>
+                                  <a class="dropdown-item" href="careers/">
+                    <span><i class="bi bi-people-fill me-2" aria-hidden="true"></i>Join Our Team</span>
+                    <small>Partner with us across real estate and construction</small>                  </a>
+                              </div>
+            </li>
+                                                  <li class="nav-item"><a class="nav-link" href="contact/"><i class="bi bi-telephone-fill me-1" aria-hidden="true"></i>Contact</a></li>
+                          
+                  <li class="nav-item ms-lg-2"><a class="btn btn-primary nav-cta" href="layout-map/"><i class="bi bi-search-heart-fill me-1" aria-hidden="true"></i>Explore Properties</a></li>
+                &nbsp;&nbsp; 
+        <li class="nav-item promo-notify-item ms-lg-2" id="promoNotifyItem">
+          <button type="button" class="promo-notify-btn" id="promoNotifyButton" aria-haspopup="true" aria-expanded="false" aria-label="Latest update">
+            <i class="bi bi-bell-fill"></i>
+            <span class="promo-notify-dot"></span>
+          </button>
+          <div class="promo-notify-panel" id="promoNotifyPanel">
+            <div class="promo-notify-panel-head">
+              <span><i class="bi bi-megaphone-fill me-1 text-primary"></i>Latest update</span>
+              <button type="button" class="btn-close" id="promoNotifyClose" aria-label="Close"></button>
+            </div>
+            <img id="promoNotifyImage" src="" alt="Latest update">
+            <div class="promo-notify-caption" id="promoNotifyCaption"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollEl = document.querySelector('.app-shell-main');
+    const toggleHeaderState = () => {
+      const scrollTop = scrollEl ? scrollEl.scrollTop : window.scrollY;
+      document.body.classList.toggle('scrolled', scrollTop > 12);
+    };
+    const scrollTargets = [window];
+    if (scrollEl) {
+      scrollTargets.push(scrollEl);
+    }
+    scrollTargets.forEach(target => target.addEventListener('scroll', toggleHeaderState, { passive: true }));
+    toggleHeaderState();
+
+    // Updates bell: lets a visitor see the currently published brochure/offer
+    // image from any page, with a pulsing dot until they open it once.
+    (async () => {
+      const item = document.getElementById('promoNotifyItem');
+      const button = document.getElementById('promoNotifyButton');
+      const panel = document.getElementById('promoNotifyPanel');
+      const closeButton = document.getElementById('promoNotifyClose');
+      const image = document.getElementById('promoNotifyImage');
+      const caption = document.getElementById('promoNotifyCaption');
+      if (!item || !button || !panel) return;
+
+      try {
+        const response = await fetch('/jana_venture_project/api/promotions');
+        const result = await response.json();
+        const promo = result.data;
+        if (!promo || !promo.image) return;
+
+        const seenKey = 'ths_promo_seen_' + promo.id;
+        image.src = '/jana_venture_project/uploads/promotions/' + encodeURIComponent(promo.image);
+        image.alt = promo.title || 'Latest update';
+        if (promo.title) {
+          caption.textContent = promo.title;
+          caption.classList.remove('d-none');
+        } else {
+          caption.classList.add('d-none');
+        }
+
+        item.classList.remove('d-none');
+        if (!localStorage.getItem(seenKey)) {
+          item.classList.add('has-update');
+        }
+
+        const closePanel = () => {
+          panel.classList.remove('show');
+          button.setAttribute('aria-expanded', 'false');
+        };
+
+        button.addEventListener('click', event => {
+          event.stopPropagation();
+          const isOpen = panel.classList.toggle('show');
+          button.setAttribute('aria-expanded', String(isOpen));
+          if (isOpen) {
+            item.classList.remove('has-update');
+            try { localStorage.setItem(seenKey, '1'); } catch (error) { /* ignore storage errors (private mode, etc.) */ }
+          }
+        });
+        closeButton?.addEventListener('click', event => { event.stopPropagation(); closePanel(); });
+        image.addEventListener('click', () => window.open(image.src, '_blank', 'noopener'));
+        document.addEventListener('click', event => { if (!item.contains(event.target)) closePanel(); });
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') closePanel(); });
+      } catch (error) {
+        // A missing/failed promotions fetch should never break navigation.
+        console.error('Unable to load the latest update:', error);
+      }
+    })();
+  });
+</script>
+
+  <main class="container-fluid px-4 py-5 page-shell app-shell-main">
+    <!-- Hero Section: ultra-high-resolution background photo, sharp HTML text overlay -->
+  
+   <img src="assets/images/banner_img.png" alt="banner image" class="img-fluid w-100 rounded-4 shadow-lg mb-5" style="max-height: 625px; object-fit: cover;"/>
+     <!-- <section class="hero-modern">
+      <div class="hero-modern-media">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=90" alt="The Heaven Space — find your dream space" fetchpriority="high">
+      </div>
+      <div class="hero-modern-content">
+        <p class="hero-caption mb-0" style="color:#a7f3e2;"><i class="bi bi-lightning-fill"></i> Premium Residential Living</p>
+        <h1>Find Your <span>Dream Space</span></h1>
+        <p class="hero-modern-sub">Open Plots &nbsp;|&nbsp; Premium Villas &nbsp;|&nbsp; Endless Possibilities</p>
+        <p class="hero-modern-tagline">Build your future in perfect locations — explore real-time availability and connect with our property team.</p>
+        <div class="hero-feature-row">
+          <div><i class="bi bi-grid-3x3-gap-fill"></i><strong>Open Plots</strong><span>Prime Locations</span></div>
+          <div><i class="bi bi-house-heart-fill"></i><strong>Luxury Villas</strong><span>Modern Living</span></div>
+          <div><i class="bi bi-signpost-split-fill"></i><strong>Wide Roads</strong><span>Better Connectivity</span></div>
+          <div><i class="bi bi-shield-check"></i><strong>Secure Investment</strong><span>Bright Future</span></div>
+        </div>
+      </div>
+    </section> -->
+
+
+    <!-- Property Types Section -->
+    <section class="mt-5 py-5">
+      <div class="text-center mx-auto mb-5" style="max-width: 620px;">
+        <h2 class="section-title fw-bold mb-3">Explore By Property Type</h2>
+        <p class="text-muted lead">Whether you're after an open plot to build on, a ready villa, or a construction-ready project, find it in a couple of clicks.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-sm-6">
+          <a class="cat-item" href="layout-map/?type=open-plot">
+            <div class="icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
+            <h3>Open Plot Layouts</h3>
+            <span>Interactive layout maps with live availability</span>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="cat-item" href="villas/">
+            <div class="icon"><i class="bi bi-house-heart-fill"></i></div>
+            <h3>Villas</h3>
+            <span>Rooms, parking, facilities, and reservations</span>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="cat-item" href="construction-plots/">
+            <div class="icon"><i class="bi bi-building-fill"></i></div>
+            <h3>Construction Plots</h3>
+            <span>Live project inventory, ready to reserve</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Gallery Section -->
+    <section class="mt-5 py-5">
+      <div class="text-center mx-auto mb-5" style="max-width: 620px;">
+        <h2 class="section-title fw-bold mb-3">Project Overview</h2>
+        <p class="text-muted lead">A closer look at the roads, open spaces, villas, and construction quality across our developments.</p>
+      </div>
+      <div class="gallery-grid">
+        <a class="gallery-item" href="layout-map/">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=85" alt="Planned open plot layout with roads" loading="lazy">
+          <span><i class="bi bi-signpost-split-fill me-1"></i>Planned Layouts &amp; Roads</span>
+        </a>
+        <a class="gallery-item" href="villas/">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85" alt="Premium villa exterior" loading="lazy">
+          <span><i class="bi bi-house-heart-fill me-1"></i>Premium Villas</span>
+        </a>
+        <a class="gallery-item" href="construction-plots/">
+          <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1000&q=85" alt="Construction in progress" loading="lazy">
+          <span><i class="bi bi-building-fill me-1"></i>Construction Quality</span>
+        </a>
+        <a class="gallery-item" href="community/">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85" alt="Modern residential community" loading="lazy">
+          <span><i class="bi bi-people-fill me-1"></i>Growing Community</span>
+        </a>
+        <a class="gallery-item" href="services/">
+          <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1000&q=85" alt="Interior design and amenities" loading="lazy">
+          <span><i class="bi bi-stars me-1"></i>Amenities &amp; Design</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- About / Why Us Section -->
+    <section class="mt-5 py-5">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <div class="about-visual">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=85" alt="Aerial view of a planned residential township" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <p class="hero-caption text-primary mb-2"><i class="bi bi-award-fill"></i> Why Choose Us</p>
+          <h2 class="section-title fw-bold mb-3">A Trusted Partner In Every Step</h2>
+          <p class="text-muted mb-4">We focus on honesty, quality, transparency, and customer-led growth.</p>
+          <div class="about-checklist d-grid gap-2">
+            <p class="par-center"><i class="bi bi-check-circle-fill"></i> Real-time plot and property availability</p>
+            <p class="par-center"><i class="bi bi-check-circle-fill"></i> Transparent pricing with no hidden charges</p>
+            <p class="par-center"><i class="bi bi-check-circle-fill"></i> Dedicated support from enquiry to reservation</p>
+
+
+          </div>
+          <a href="about/" class="btn btn-primary py-3 px-5 mt-4">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="mt-5">
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-8">
+          <h2 class="section-title fw-bold mb-3">Complete Real Estate Solutions for Modern Living</h2>
+          <p class="text-muted lead">From interactive layout visualization to seamless enquiries, we deliver a premium property experience with cutting-edge technology and responsive support.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-xl-3">
+          <div class="card-3d p-4 h-100">
+            <div class="feature-icon primary">
+              <i class="bi bi-map-fill"></i>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Interactive Layouts</h3>
+            <p class="text-muted mb-0">Intuitive plot visualization with real-time status updates, advanced search, and instant booking capabilities.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card-3d p-4 h-100">
+            <div class="feature-icon success">
+              <i class="bi bi-headset"></i>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Expert Support</h3>
+            <p class="text-muted mb-0">Dedicated sales team and customer support for all property enquiries and booking assistance.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card-3d p-4 h-100">
+            <div class="feature-icon warning">
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Premium Amenities</h3>
+            <p class="text-muted mb-0">World-class facilities, parks, and community spaces designed for modern family living.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card-3d p-4 h-100">
+            <div class="feature-icon danger">
+              <i class="bi bi-graph-up-arrow"></i>
+            </div>
+            <h3 class="h5 fw-bold mb-2">Investment Value</h3>
+            <p class="text-muted mb-0">Property solutions designed for long-term appreciation and sustainable real estate returns.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="mt-5 py-5">
+      <div class="footer-card p-5 text-center text-white">
+        <h2 class="h3 fw-bold mb-3">
+          <i class="bi bi-gem"></i> Ready to Find Your Perfect Plot?
+        </h2>
+        <p class="lead mb-4 opacity-85">
+          Explore our interactive layout map or submit a contact enquiry for personalized support from our expert team.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <a href="layout-map/" class="btn btn-light btn-lg fw-bold">
+            <i class="bi bi-map"></i> View All Projects
+          </a>
+          <a href="contact/" class="btn btn-outline-light btn-lg fw-bold">
+            <i class="bi bi-envelope"></i> Get in Touch
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="global-footer app-shell-footer">
+  <div class="container-fluid px-4">
+    <div class="global-footer-panel">
+      <div class="row gy-4 align-items-start">
+        <div class="col-lg-5">
+          <a class="footer-brand" href="./">
+            <img src="logo-heaven-space.svg" alt="The Heaven Space">
+            <span>The Heaven Space</span>
+          </a>
+          <p class="footer-copy mt-3 mb-0">
+            A digital real estate platform for layouts, property owners, building professionals, and buyers.          </p>
+          <div class="footer-chip-row mt-3">
+            <span class="footer-chip">Trusted</span><span class="footer-chip">Modern</span><span class="footer-chip">Transparent</span>          </div>
+                            </div>
+
+                  <div class="col-6 col-lg-2">
+            <h2 class="footer-heading">Pages</h2>
+            <ul class="footer-links">
+                              <li><a href="./"><i class="bi bi-house-door me-2" aria-hidden="true"></i>Home</a></li>
+                              <li><a href="about/"><i class="bi bi-info-circle me-2" aria-hidden="true"></i>About</a></li>
+                              <li><a href="services/"><i class="bi bi-grid me-2" aria-hidden="true"></i>Services</a></li>
+                              <li><a href="careers/"><i class="bi bi-briefcase me-2" aria-hidden="true"></i>Careers</a></li>
+                          </ul>
+          </div>
+                  <div class="col-6 col-lg-2">
+            <h2 class="footer-heading">Layouts</h2>
+            <ul class="footer-links">
+                              <li><a href="layout-map/"><i class="bi bi-map me-2" aria-hidden="true"></i>Explore Properties</a></li>
+                              <li><a href="contact/"><i class="bi bi-chat-dots me-2" aria-hidden="true"></i>Enquire</a></li>
+                          </ul>
+          </div>
+        
+        <div class="col-lg-3">
+          <h2 class="footer-heading">Contact</h2>
+          <p class="footer-copy mb-2">Vijayasanthi Homes, Dilshukhnagar, Hyderabad - 500060</p>
+          <p class="footer-copy mb-2">info@theheavenspace.com</p>
+          <p class="footer-copy mb-0">89854 48044</p>
+        </div>
+      </div>
+
+      <!-- <div class="footer-bottom">
+        <span>&copy; 2026 The Heaven Space. All rights reserved.</span>
+        <a class="footer-admin-link" href="/jana_venture_project/admin/login" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-shield-lock me-1"></i>Admin Portal
+        </a>
+      </div> -->
+    </div>
+  </div>
+</footer>
+<a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+<div class="cookie-consent" id="cookieConsent" role="dialog" aria-modal="true" aria-labelledby="cookieConsentTitle" hidden>
+  <div class="cookie-consent-copy">
+    <strong id="cookieConsentTitle"><i class="bi bi-shield-check me-2"></i>Your privacy choices</strong>
+    <p>We use an optional first-party cookie to record one initial visit and understand advertising performance. Cookies cannot access your Google name or email. Google details are shared only if you explicitly use Google Sign-In.</p>
+  </div>
+  <div class="cookie-consent-actions">
+    <button class="btn btn-outline-light" id="rejectCookies" type="button">Reject optional cookies</button>
+    <button class="btn btn-light" id="acceptCookies" type="button">Accept cookies</button>
+  </div>
+</div>
+<style>
+  .cookie-consent{position:fixed;z-index:1090;left:1rem;right:1rem;bottom:calc(var(--site-footer-height, 100px) + 1rem);max-width:980px;margin:auto;padding:1.15rem 1.25rem;border-radius:18px;background:#102820;color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;transition:bottom .2s ease}
+  .cookie-consent[hidden]{display:none}.cookie-consent-copy{max-width:650px}.cookie-consent-copy strong{display:block;margin-bottom:.35rem}.cookie-consent-copy p{margin:0;color:rgba(255,255,255,.75);font-size:.88rem}.cookie-consent-actions{display:flex;gap:.65rem;flex:0 0 auto}.cookie-consent-actions .btn{white-space:nowrap}
+  @media(max-width:767px){.cookie-consent{align-items:stretch;flex-direction:column}.cookie-consent-actions{display:grid;grid-template-columns:1fr}.cookie-consent-actions .btn{width:100%}}
+</style>
+<script>
+  (() => {
+    const setFooterOffset = () => {
+      const footer = document.querySelector('.app-shell-footer');
+      if (footer) document.documentElement.style.setProperty('--site-footer-height', `${footer.offsetHeight}px`);
+    };
+    setFooterOffset();
+    window.addEventListener('resize', setFooterOffset, { passive: true });
+    const footerEl = document.querySelector('.app-shell-footer');
+    if (footerEl) new ResizeObserver(setFooterOffset).observe(footerEl);
+
+    const consent = document.getElementById('cookieConsent');
+    const readCookie = name => document.cookie.split('; ').find(row => row.startsWith(`${name}=`))?.split('=')[1] || '';
+    if (!readCookie('ths_cookie_consent')) consent.hidden = false;
+    const saveConsent = accepted => {
+      const secure = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `ths_cookie_consent=${accepted ? 'accepted' : 'rejected'}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
+      if (!accepted) document.cookie = `ths_visitor_id=; Max-Age=0; Path=/; SameSite=Lax${secure}`;
+      consent.hidden = true;
+      if (accepted) location.reload();
+    };
+    document.getElementById('acceptCookies')?.addEventListener('click', () => saveConsent(true));
+    document.getElementById('rejectCookies')?.addEventListener('click', () => saveConsent(false));
+
+    const backToTop = document.getElementById('backToTop');
+    const scrollHost = document.querySelector('.app-shell-main');
+    const toggleBackToTop = () => {
+      const scrollTop = scrollHost ? scrollHost.scrollTop : window.scrollY;
+      backToTop?.classList.toggle('show', scrollTop > 300);
+    };
+    const scrollHosts = [window];
+    if (scrollHost) scrollHosts.push(scrollHost);
+    scrollHosts.forEach(target => target.addEventListener('scroll', toggleBackToTop, { passive: true }));
+    toggleBackToTop();
+    backToTop?.addEventListener('click', event => {
+      event.preventDefault();
+      (scrollHost || window).scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+  <div class="modal fade" id="promoPopupModal" tabindex="-1" aria-label="Current promotion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 overflow-hidden rounded-4">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-3 bg-white rounded-circle p-2 shadow-sm" style="z-index:2" data-bs-dismiss="modal" aria-label="Close"></button>
+        <img id="promoPopupImage" src="" alt="" class="w-100" style="display:block;max-height:82vh;object-fit:contain;background:#0e2e50">
+        <div id="promoPopupCaption" class="p-3 text-center fw-semibold d-none"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/protection.js"></script>
+  <script>
+    (async () => {
+      try {
+        const response = await fetch('/jana_venture_project/api/promotions');
+        const result = await response.json();
+        const promo = result.data;
+        if (!promo || !promo.image) return;
+
+        // Show a brand-new promotion once per browser rather than on every
+        // homepage load, so returning visitors aren't nagged repeatedly.
+        const dismissedKey = 'ths_promo_dismissed_' + promo.id;
+        if (localStorage.getItem(dismissedKey)) return;
+
+        const modalElement = document.getElementById('promoPopupModal');
+        const image = document.getElementById('promoPopupImage');
+        const caption = document.getElementById('promoPopupCaption');
+        image.src = '/jana_venture_project/uploads/promotions/' + encodeURIComponent(promo.image);
+        image.alt = promo.title || 'Latest offer';
+        if (promo.title) {
+          caption.textContent = promo.title;
+          caption.classList.remove('d-none');
+        }
+        modalElement.addEventListener('hidden.bs.modal', () => {
+          try { localStorage.setItem(dismissedKey, '1'); } catch (error) { /* ignore storage errors (private mode, etc.) */ }
+        }, { once: true });
+        bootstrap.Modal.getOrCreateInstance(modalElement).show();
+      } catch (error) {
+        // A promotion popup failing to load should never block the home page.
+        console.error('Unable to load the current promotion:', error);
+      }
+    })();
+  </script>
+</body>
+</html>

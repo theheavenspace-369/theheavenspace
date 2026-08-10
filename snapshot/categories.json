@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "id": "609a192e-8333-11f1-87aa-04cf4ba169a8",
+            "name": "Construction Plots",
+            "type": "Construction"
+        },
+        {
+            "id": "609a10f8-8333-11f1-87aa-04cf4ba169a8",
+            "name": "Open Plot Layouts",
+            "type": "Open Plot"
+        },
+        {
+            "id": "609a177e-8333-11f1-87aa-04cf4ba169a8",
+            "name": "Villas",
+            "type": "Villa"
+        }
+    ],
+    "error": null
+}

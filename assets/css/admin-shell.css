@@ -1,0 +1,92 @@
+/* Admin app shell: header pinned full width at top, footer pinned full
+   width at bottom, only .app-shell-main scrolls in between. Kept separate
+   from styles.css so customer-facing branding never bleeds into admin. */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.app-shell-header {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 40;
+  width: 100%;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.28);
+}
+
+.app-shell-main {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+.app-shell-footer {
+  flex: 0 0 auto;
+  width: 100%;
+  z-index: 30;
+}
+
+.admin-shell-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding: 0.85rem 1.5rem;
+  background: #111827;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-shell-footer a {
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.admin-shell-footer a:hover {
+  color: #00b98e;
+}
+
+/* Data/dashboard pages use Bootstrap's centered .container; stretch it to
+   fill the viewport on desktop instead of leaving side gutters, matching
+   the same full-bleed fix applied to the public site. Auth screens
+   (login/forgot/reset password) intentionally keep the default centered
+   .container and do not carry this class. */
+main.app-shell-main.container {
+  max-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 185, 142, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 185, 142, 0.55);
+  background-clip: padding-box;
+}

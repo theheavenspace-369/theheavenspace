@@ -1,0 +1,741 @@
+:root{
+ --available:#22c55e;--reserved:#facc15;--sold:#ef4444;--selected:#00b98e;
+ --primary-gradient: linear-gradient(135deg, #00b98e, #049080);
+ --success-gradient: linear-gradient(135deg, #16a34a, #22c55e);
+ --warning-gradient: linear-gradient(135deg, #f59e0b, #facc15);
+ --danger-gradient: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+body{
+    background: linear-gradient(135deg, #eefaf6 0%, #eafcf4 50%, #fff4ec 100%);
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+}
+
+.svg-wrapper {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.svg-wrapper:hover {
+    box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+}
+
+#svgWrapper {
+    background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 185, 142, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 185, 142, 0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+    padding: 20px !important;
+    transition: all 0.3s ease;
+    overflow: auto;
+    max-height: min(75vh, 760px);
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    -webkit-overflow-scrolling: touch;
+}
+
+.star-rating { display:inline-flex; flex-direction:row-reverse; gap:.35rem; }
+.star-rating input { position:absolute; opacity:0; pointer-events:none; }
+.star-rating label { color:#d1d5db; cursor:pointer; font-size:2rem; line-height:1; transition:color .15s, transform .15s; }
+.star-rating label:hover, .star-rating label:hover ~ label,
+.star-rating input:checked ~ label { color:#f59e0b; }
+.star-rating label:hover { transform:scale(1.12); }
+.review-card { border:1px solid #e5e7eb; border-radius:1rem; padding:1rem; background:#fff; }
+.review-stars { color:#f59e0b; letter-spacing:.08rem; }
+.review-comments { white-space:pre-wrap; overflow-wrap:anywhere; }
+
+#svgContainer .plot.corner-plot {
+    stroke: #ff6922 !important;
+    stroke-width: 4px !important;
+    stroke-dasharray: 7 4;
+}
+.corner-plot-badge { pointer-events: none; }
+.corner-plot-badge circle { fill: #ff6922; stroke: #fff; stroke-width: 2px; }
+.corner-plot-badge text { fill: #fff; font-weight: 900; }
+.corner-tooltip { color: #ff6922; font-weight: 800; margin-top: .25rem; }
+
+.property-cards-view { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; }
+.property-showcase-card { position:relative; overflow:hidden; border:1px solid #e2e8f0; border-radius:1.35rem; background:#fff; box-shadow:0 14px 36px rgba(15,23,42,.09); transition:transform .2s,box-shadow .2s; }
+.property-showcase-card:hover { transform:translateY(-5px); box-shadow:0 20px 45px rgba(37,99,235,.16); }
+.property-showcase-visual { min-height:155px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,#049080,#ff6922); }
+.property-showcase-card.construction .property-showcase-visual { background:linear-gradient(135deg,#0f766e,#22c55e); }
+.property-showcase-visual i { font-size:4rem; filter:drop-shadow(0 8px 12px rgba(0,0,0,.2)); }
+.property-showcase-image { width:100%; height:210px; object-fit:cover; display:block; transition:transform .4s ease; }
+.property-showcase-card:hover .property-showcase-image { transform:scale(1.035); }
+.property-showcase-status { position:absolute; top:1rem; right:1rem; border-radius:999px; padding:.35rem .7rem; font-size:.75rem; font-weight:800; text-transform:uppercase; background:#fff; }
+.property-interest-badge { position:absolute; top:1rem; left:1rem; z-index:2; display:inline-flex; align-items:center; gap:.4rem; min-width:48px; justify-content:center; padding:.45rem .7rem; color:#fff; background:#049080; border:2px solid #fff; border-radius:999px; font-weight:900; box-shadow:0 5px 14px rgba(4,144,128,.35); }
+.property-interest-badge:hover,.property-interest-badge:focus-visible { background:#0e2e50; transform:scale(1.06); outline:none; }
+.property-feature-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.65rem; }
+.property-feature { padding:.65rem; border-radius:.8rem; background:#f8fafc; color:#475569; font-size:.88rem; }
+.property-feature i { color:var(--tenant-primary,#049080); margin-right:.35rem; }
+.property-showcase-card .card-body { padding:1.25rem; }
+.villa-listing-grid,.construction-plot-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; grid-column:1/-1; }
+.construction-project-hero { grid-column:1/-1; display:grid; grid-template-columns:minmax(280px,1.05fr) minmax(320px,1fr); overflow:hidden; border-radius:1.5rem; background:#0f172a; color:#fff; box-shadow:0 20px 55px rgba(15,23,42,.2); }
+.construction-project-media { min-height:320px; position:relative; }
+.construction-project-media img { width:100%; height:100%; object-fit:cover; display:block; }
+.image-updated-note { position:absolute; top:.75rem; left:.75rem; z-index:2; display:inline-flex; align-items:center; gap:.4rem; padding:.4rem .75rem; background:rgba(15,23,42,.72); color:#fff; border-radius:999px; font-size:.78rem; font-weight:700; backdrop-filter:blur(2px); }
+.construction-project-content { padding:clamp(1.5rem,4vw,3rem); display:flex; flex-direction:column; justify-content:center; }
+.construction-project-content h3 { font-size:clamp(1.6rem,3vw,2.5rem); font-weight:850; }
+.construction-project-content p { color:#cbd5e1; }
+.construction-inventory-summary { display:grid; grid-template-columns:repeat(4,1fr); gap:.65rem; margin-top:1rem; }
+.construction-inventory-summary div { padding:.85rem .55rem; text-align:center; border:1px solid rgba(255,255,255,.14); border-radius:.85rem; background:rgba(255,255,255,.07); }
+.construction-inventory-summary strong,.construction-inventory-summary span { display:block; }
+.construction-inventory-summary strong { font-size:1.55rem; }
+.construction-inventory-summary span { color:#cbd5e1; font-size:.75rem; }
+.construction-inventory-summary .available strong { color:#4ade80; }
+.construction-inventory-summary .reserved strong { color:#facc15; }
+.construction-inventory-summary .sold strong { color:#f87171; }
+.construction-plot-grid .property-showcase-card { border-top:5px solid #0f766e; }
+.property-image-placeholder { width:100%; min-height:210px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.65rem; color:#fff; background:linear-gradient(135deg,#334155,#64748b); }
+.property-image-placeholder i { font-size:3rem; }
+.property-image-placeholder span { font-weight:700; }
+.villa-spec-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-bottom:1rem; }
+.villa-spec-grid span { padding:.65rem .35rem; text-align:center; border-radius:.75rem; background:#eff6ff; color:#475569; font-size:.72rem; }
+.villa-spec-grid i,.villa-spec-grid strong { display:block; color:#049080; }
+.villa-spec-grid strong { margin:.2rem 0; font-size:1.05rem; }
+.villa-facilities { display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; }
+.villa-facilities span { padding:.35rem .55rem; border-radius:999px; background:#f0fdf4; color:#166534; font-size:.75rem; font-weight:700; }
+.villa-facilities i { margin-right:.3rem; }
+@media (max-width:767.98px) { .construction-project-hero{grid-template-columns:1fr}.construction-project-media{min-height:220px}.construction-inventory-summary{grid-template-columns:repeat(2,1fr)} }
+
+#svgContainer {
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 500px;
+    min-width: 100%;
+    width: max-content;
+}
+
+#searchPlot {
+    box-shadow: none;
+    min-height: 56px;
+    font-size: 1rem;
+}
+
+#searchPlot:focus {
+    box-shadow: 0 0 0 4px rgba(0, 185, 142, 0.12);
+}
+
+.search-input-shell {
+    min-height: 58px;
+}
+
+.search-input-shell .btn {
+    min-width: 58px;
+    font-size: 1rem;
+}
+
+.filter-btn {
+    min-width: 132px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.14);
+}
+
+.filter-btn.active {
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+    border-color: transparent;
+}
+
+#svgContainer svg,
+#svgContainer img {
+    display: block;
+    flex: 0 0 auto;
+    height: auto;
+    max-width: none;
+}
+
+/* Keep smaller maps responsive while preserving the intrinsic size of large maps.
+   Oversized layouts scroll inside #svgWrapper instead of widening the page. */
+#svgContainer svg {
+    width: auto;
+}
+
+#svgContainer img {
+    object-fit: contain;
+}
+
+@media (max-width: 767.98px) {
+    #svgWrapper {
+        max-height: 68vh;
+        padding: 12px !important;
+    }
+
+    #svgContainer {
+        min-height: 360px;
+    }
+}
+
+.plot{
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+}
+
+.plot:hover{
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.12)) brightness(1.05);
+    stroke-width: 2px;
+}
+
+/* The searched plot's own fill can be green/yellow/red/corner-orange, so we
+   never rely on styling that element's stroke directly (status and corner
+   CSS rules with !important would win by specificity on some plots). The
+   highlight is drawn with two independent overlay clones instead — a white
+   halo for contrast against any fill colour, plus a pulsing accent outline
+   on top — so it reads clearly no matter the plot status or layout. */
+.plot.search-highlight {
+    filter: drop-shadow(0 0 16px rgba(29, 78, 216, 0.65)) brightness(1.08);
+}
+
+.plot-search-halo {
+    fill: none !important;
+    stroke: #ffffff;
+    stroke-width: 9px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+    vector-effect: non-scaling-stroke;
+}
+
+.plot-search-outline {
+    fill: none !important;
+    stroke: #1d4ed8;
+    stroke-width: 4.5px;
+    stroke-dasharray: 8 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+    vector-effect: non-scaling-stroke;
+    animation: plot-search-pulse 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes plot-search-pulse {
+    from {
+        stroke: #1d4ed8;
+        stroke-width: 4.5px;
+    }
+    to {
+        stroke: #60a5fa;
+        stroke-width: 6px;
+    }
+}
+
+/* Every other plot dims while a search result is focused, so the match is
+   unmistakable regardless of its status colour. */
+.plot.plot-dimmed {
+    opacity: 0.3 !important;
+    transition: opacity 0.25s ease;
+}
+
+.plot.search-highlight .plot-label {
+    fill: #ffffff !important;
+    font-weight: 900;
+    opacity: 1;
+    paint-order: stroke;
+    stroke: rgba(30, 64, 175, 0.95);
+    stroke-width: 6px;
+}
+
+.plot-label{
+    font-size: 12px;
+    font-weight: 700;
+    fill: #111827;
+    pointer-events: none;
+    transition: all 0.25s ease;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    opacity: 0.95;
+    paint-order: stroke;
+    stroke: rgba(255,255,255,0.95);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+}
+
+.plot:hover .plot-label,
+.plot.selected .plot-label {
+    fill: #ffffff;
+    font-weight: 900;
+    opacity: 1;
+    stroke: rgba(30,64,175,0.75);
+    stroke-width: 6px;
+}
+
+.plot.sold {
+    opacity: 0.75;
+    stroke-width: 1px;
+}
+
+.plot.sold:hover {
+    stroke: #991b1b;
+    stroke-width: 2px;
+}
+
+.plot.available {
+    cursor: pointer;
+    stroke-width: 1px;
+    stroke: rgba(34, 197, 94, 0.3);
+}
+
+.plot.available:hover {
+    stroke: #16a34a;
+    stroke-width: 2px;
+}
+
+.plot.reserved {
+    cursor: pointer;
+    stroke-width: 1px;
+    stroke: rgba(245, 158, 11, 0.3);
+}
+
+.plot.reserved:hover {
+    stroke: #d97706;
+    stroke-width: 2px;
+}
+
+.plot-interest-badge {
+    pointer-events: auto;
+    cursor: pointer;
+}
+.plot-interest-badge:focus circle { stroke: #111827; stroke-width: 3px; }
+
+.plot-interest-badge circle {
+    fill: #0e2e50;
+    stroke: #ffffff;
+    stroke-width: 2px;
+    filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.35));
+}
+
+.plot-interest-badge text {
+    fill: #ffffff;
+    font-weight: 800;
+    paint-order: stroke;
+    stroke: transparent;
+}
+
+#plotTooltip {
+    position: fixed;
+    display: none;
+    min-width: 250px;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.9);
+    z-index: 99999;
+    pointer-events: auto;
+    border: 1px solid rgba(0, 185, 142, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.tooltip-title {
+    font-size: 17px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00b98e, #049080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.stats-card{
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+.stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.3), transparent);
+}
+
+.stats-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+.stats-card .card-body {
+    padding: 24px;
+}
+
+.stats-card h6 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.stats-card h2 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.modal-content{
+    border: none;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+    background: #ffffff;
+}
+
+.modal-header{
+    background: linear-gradient(135deg, #00b98e 0%, #049080 50%, #0e2e50 100%);
+    color: #fff;
+    border: none;
+    padding: 28px;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 28px;
+    max-height: 72vh;
+    overflow-y: auto;
+}
+
+.modal-dialog.modal-xl {
+    max-width: min(980px, 94vw);
+}
+
+.property-type-tabs .nav-link {
+    background: rgba(255,255,255,.78);
+    border: 1px solid rgba(37,99,235,.12);
+    border-radius: 14px;
+    color: #475569;
+    font-weight: 700;
+    padding: .8rem 1rem;
+    transition: .2s ease;
+}
+
+.property-type-tabs .nav-link:hover,
+.property-type-tabs .nav-link.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(37,99,235,.24);
+    color: #fff;
+}
+
+.reserved-interest-count {
+    align-items: center;
+    background: #0e2e50;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    box-shadow: 0 3px 8px rgba(15, 23, 42, 0.3);
+    color: #ffffff;
+    display: inline-flex;
+    font-size: 0.7rem;
+    font-weight: 800;
+    height: 24px;
+    justify-content: center;
+    line-height: 1;
+    min-width: 24px;
+    padding: 0 5px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    z-index: 2;
+}
+
+.empty-layout-state {
+    color: #64748b;
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.layout-media-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.layout-media-actions .btn {
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.empty-layout-state i {
+    color: #7ee0c9;
+    display: block;
+    font-size: 2.5rem;
+    margin-bottom: .75rem;
+}
+
+/* Keep the footer visible while the registration fields scroll. */
+.modal-dialog-scrollable #bookingForm {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.modal-dialog-scrollable #bookingForm .modal-body {
+    flex: 1 1 auto;
+    max-height: none;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    border-top: 1px solid #e5e7eb;
+    padding: 20px;
+}
+
+.plot.available{
+    fill: #22c55e;
+}
+
+.plot.reserved{
+    fill: #f59e0b;
+}
+
+.plot.sold{
+    fill: #ef4444;
+    opacity: 0.8;
+}
+
+/* Labels are appended after each plot path, so they remain visible above it. */
+#svgContainer .plot-label {
+    fill: #111827;
+    font-size: 14px;
+    font-weight: 900;
+    opacity: 1;
+    paint-order: stroke;
+    stroke: #ffffff;
+    stroke-width: 4px;
+    stroke-linejoin: round;
+}
+
+.interest-confirm-modal .modal-body {
+    max-height: none;
+}
+
+.interest-count-icon {
+    align-items: center;
+    background: #eff6ff;
+    border-radius: 50%;
+    color: #049080;
+    display: inline-flex;
+    font-size: 30px;
+    height: 72px;
+    justify-content: center;
+    margin-bottom: 18px;
+    width: 72px;
+}
+
+.plot-compact-actions {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.plot-compact-actions.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.plot-action-item {
+    cursor: pointer;
+    filter: drop-shadow(0 4px 5px rgba(15, 23, 42, .28));
+    pointer-events: all;
+}
+
+.plot-action-item rect {
+    fill: #fff;
+    stroke: #d7f7ec;
+    stroke-width: 1.25px;
+    transition: fill .16s ease, stroke .16s ease;
+    pointer-events: all;
+}
+
+.plot-action-interest rect {
+    fill: #eafcf4;
+    stroke: #7ee0c9;
+}
+
+.plot-action-reviews rect {
+    fill: #eff6ff;
+    stroke: #7ee0c9;
+}
+
+.plot-action-add-review rect {
+    fill: #fffbeb;
+    stroke: #fcd34d;
+}
+
+.plot-action-item:hover rect,
+.plot-action-item:focus rect {
+    fill: #049080;
+    stroke: #fff;
+}
+
+.plot-action-symbol,
+.plot-action-count {
+    dominant-baseline: auto;
+    fill: #049080;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    pointer-events: none;
+    stroke: none;
+}
+
+.plot-action-count {
+    fill: #dc2626;
+    font-size: 6px;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.plot-action-interest .plot-action-symbol { fill:#0e2e50; }
+.plot-action-reviews .plot-action-symbol { fill:#049080; }
+.plot-action-add-review .plot-action-symbol { fill:#d97706; }
+
+.plot-action-item:hover text,
+.plot-action-item:focus text {
+    fill: #fff;
+}
+
+.open-plot-action-overlay {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(2, 32px);
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    transform-origin: top left;
+    z-index: 1080;
+}
+
+.open-plot-action-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.open-plot-action-overlay button {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #7ee0c9;
+    border-radius: 12px 12px 12px 4px;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, .28);
+    color: #049080;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 900;
+    gap: 2px;
+    height: 32px;
+    justify-content: center;
+    padding: 0 4px;
+    width: 32px;
+}
+
+.open-plot-action-overlay button[data-open-plot-action="interest"] {
+    grid-column: 2;
+}
+
+.open-plot-action-overlay button:hover,
+.open-plot-action-overlay button:focus-visible {
+    background: #049080;
+    color: #fff;
+    outline: none;
+}
+
+.open-plot-action-overlay span {
+    font-size: 8px;
+}
+
+.plot-action-curve {
+    align-items: center;
+    background: rgba(255, 255, 255, .98);
+    border: 1px solid #d7f7ec;
+    border-radius: 999px 999px 999px 10px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .24);
+    display: flex;
+    gap: 2px;
+    height: 32px;
+    justify-content: center;
+    padding: 2px 4px;
+}
+
+.plot-action-curve button {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: #049080;
+    display: inline-flex;
+    font-size: 12px;
+    font-weight: 800;
+    gap: 3px;
+    height: 27px;
+    justify-content: center;
+    min-width: 30px;
+    padding: 0 5px;
+}
+
+.plot-action-curve button:hover,
+.plot-action-curve button:focus-visible {
+    background: #049080;
+    color: #fff;
+    outline: none;
+}
+
+.property-highlights-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; }
+.property-highlights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.property-highlight-column h3 { font-weight: 800; }
+.highlight-carousel { position: relative; border: 1px solid #e2e8f0; border-radius: 1rem; overflow: hidden; background: #fff; }
+.highlight-carousel-track { display: flex; transition: transform .35s ease; }
+.highlight-card { flex: 0 0 100%; box-sizing: border-box; padding: 1rem; }
+.highlight-card img { width: 100%; height: 220px; object-fit: cover; border-radius: .75rem; margin-bottom: .6rem; cursor: zoom-in; transition: transform 0.3s ease; }
+.highlight-card img:hover { transform: scale(1.02); }
+.highlight-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: .3rem; }
+.highlight-card p { color: #64748b; font-size: .9rem; margin: 0; }
+.highlight-card.empty { color: #94a3b8; text-align: center; font-size: .9rem; padding: 2.75rem 1rem; }
+.highlight-carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 36px; height: 36px; border: none; border-radius: 50%; background: rgba(15,23,42,.65); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.highlight-carousel-arrow:hover { background: rgba(15,23,42,.85); }
+.highlight-carousel-arrow.prev { left: .5rem; }
+.highlight-carousel-arrow.next { right: .5rem; }
+.highlight-carousel-dots { position: absolute; bottom: .6rem; left: 50%; transform: translateX(-50%); display: flex; gap: .4rem; z-index: 2; }
+.highlight-carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(15,23,42,.25); transition: all .2s ease; }
+.highlight-carousel-dot.active { background: #049080; width: 18px; border-radius: 4px; }
+@media (max-width: 768px) { .property-highlights-grid { grid-template-columns: 1fr; } }
+
+/* "What We Offer" service teaser at the bottom of the layout map page,
+   matching the card style already used on the Services page. */
+.layout-services-teaser { border-top: 1px solid #eef2f7; margin-top: 3rem; padding-top: 3rem; }
+.service-pill { display: inline-flex; padding: 0.55rem 1rem; border-radius: 9999px; background: rgba(255, 105, 34, 0.1); color: #d9530f; font-weight: 700; font-size: 0.85rem; }
+.service-card { border: 1px dashed rgba(255, 105, 34, 0.3); border-radius: 20px; background: #fff; padding: 1.75rem; height: 100%; transition: all .3s cubic-bezier(.4,0,.2,1); position: relative; overflow: hidden; }
+.service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(135deg,#ff6922,#0e2e50); transform:scaleX(0); transform-origin:left; transition:transform .3s ease; }
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 45px rgba(14,46,80,.14); border-color: transparent; }
+.service-card:hover::before { transform: scaleX(1); }
+.service-card .icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.1rem; background: rgba(255,105,34,.12); color: #ff6922; }
+.service-card h3 { font-size: 1.05rem; font-weight: 800; color: #0e2e50; margin-bottom: 0.5rem; }
+.service-card p { color: #64748b; font-size: .9rem; margin: 0; }

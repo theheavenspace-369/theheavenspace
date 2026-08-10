@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <title>Join Our Team | The Heaven Space</title>
+  <meta name="description" content="Join our growing network of builders, contractors, architects, agents, and real estate partners.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <link href="../styles.css" rel="stylesheet">
+  <style>
+    :root { --join-ink:#0e2e50; --join-green:#00b98e; --join-lime:#ff6922; --join-cream:#effdf5; }
+    body.page-careers { background:#f7fbf9; color:var(--join-ink); }
+    .join-shell { max-width:1400px; }
+    .join-hero { background:var(--join-ink); border-radius:34px; overflow:hidden; box-shadow:0 30px 80px rgba(14,46,80,.2); }
+    .join-visual { min-height:720px; position:relative; isolation:isolate; background:#0e2e50; }
+    .join-visual>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.82; }
+    .join-visual:after { content:""; position:absolute; inset:0; z-index:0; background:linear-gradient(180deg,rgba(14,46,80,.1),rgba(14,46,80,.86)); }
+    .join-visual-content { position:absolute; z-index:1; left:clamp(1.5rem,5vw,4rem); right:clamp(1.5rem,5vw,4rem); bottom:3.5rem; color:#fff; }
+    .eyebrow { display:inline-flex; align-items:center; gap:.55rem; padding:.55rem .9rem; border-radius:999px; background:rgba(255,255,255,.14); backdrop-filter:blur(12px); font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .join-visual h1 { max-width:620px; font-size:clamp(2.4rem,5vw,4.7rem); line-height:.98; letter-spacing:-.055em; }
+    .join-visual p { max-width:540px; color:rgba(255,255,255,.78); }
+    .network-stat { border-left:1px solid rgba(255,255,255,.28); padding-left:1rem; }
+    .join-panel { background:#fff; padding:clamp(1.5rem,4vw,4rem); display:flex; flex-direction:column; justify-content:center; }
+    .section-kicker { color:var(--join-green); font-weight:800; letter-spacing:.09em; text-transform:uppercase; font-size:.78rem; }
+    .role-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.75rem; }
+    .role-option { position:relative; border:1px solid #dfe6e1; border-radius:16px; padding:1rem; background:#fff; color:var(--join-ink); text-align:left; transition:.2s ease; }
+    .role-option:hover { border-color:#70a58f; transform:translateY(-2px); box-shadow:0 8px 24px rgba(17,37,31,.08); }
+    .role-option.active { border-color:var(--join-green); background:#eff8f3; box-shadow:0 0 0 3px rgba(23,107,77,.1); }
+    .role-option i { width:38px; height:38px; display:grid; place-items:center; border-radius:11px; color:var(--join-green); background:#e7f4ec; font-size:1.05rem; }
+    .role-option strong { display:block; margin-top:.65rem; font-size:.9rem; }
+    .form-control { min-height:54px; border-radius:13px; border-color:#dce4df; padding:.85rem 1rem; }
+    .form-control:focus { border-color:var(--join-green); box-shadow:0 0 0 .25rem rgba(23,107,77,.1); }
+    .join-submit { min-height:56px; border:0; border-radius:14px; color:#fff; background:var(--join-lime); font-weight:800; transition:.2s ease; }
+    .join-submit:hover { background:#0e2e50; transform:translateY(-2px); color:#fff; }
+    .trust-row { display:flex; flex-wrap:wrap; gap:1rem; color:#607069; font-size:.78rem; }
+    .trust-row span { display:inline-flex; align-items:center; gap:.4rem; }
+    .partner-strip { margin-top:2rem; background:var(--join-cream); border-radius:26px; padding:clamp(1.5rem,4vw,3rem); }
+    .overview-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+    .overview-strip figure { position: relative; margin: 0; border-radius: 22px; overflow: hidden; box-shadow: 0 16px 40px rgba(14, 46, 80, 0.14); }
+    .overview-strip img { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .overview-strip figure:hover img { transform: scale(1.06); }
+    .overview-strip figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem 1.1rem; background: linear-gradient(180deg, transparent, rgba(14, 46, 80, 0.85)); color: #fff; font-weight: 800; }
+    @media (max-width: 900px) { .overview-strip { grid-template-columns: 1fr; } }
+    .partner-point { display:flex; gap:1rem; }
+    .partner-point i { flex:0 0 42px; height:42px; display:grid; place-items:center; border-radius:12px; background:#fff; color:var(--join-green); box-shadow:0 6px 18px rgba(17,37,31,.07); }
+    .alert { border:0; border-radius:14px; }
+    .website-field { position:absolute!important; left:-10000px!important; width:1px!important; height:1px!important; overflow:hidden!important; }
+    @media (max-width:991.98px) { .join-visual{min-height:540px}.join-panel{padding:2rem}.join-hero{border-radius:24px} }
+    @media (max-width:575.98px) { .role-grid{grid-template-columns:1fr}.join-visual{min-height:470px}.join-visual-content{bottom:2rem}.network-stat{display:none} }
+  </style>
+</head>
+<body class="page-careers">
+  <style id="tenant-theme">:root{--tenant-primary:#00b98e;--tenant-secondary:#ff6922;--tenant-header-bg:#ffffff;--tenant-body-bg:#effdf5;--tenant-radius:14px;--bs-primary:var(--tenant-primary);--bs-primary-rgb:0,185,142;--bs-link-color:var(--tenant-primary);--bs-link-color-rgb:var(--bs-primary-rgb);--bs-link-hover-color:var(--tenant-primary);--bs-link-hover-color-rgb:var(--bs-primary-rgb)}body{background-color:var(--tenant-body-bg)!important}.app-shell-header{background:var(--tenant-header-bg)!important}.btn-primary{background-color:var(--tenant-primary);border-color:var(--tenant-primary)}.btn-outline-primary{color:var(--tenant-primary);border-color:var(--tenant-primary)}.btn-outline-primary:hover{background-color:var(--tenant-primary);border-color:var(--tenant-primary)}.text-primary{color:var(--tenant-primary)!important}.border-primary{border-color:var(--tenant-primary)!important}a:not(.btn):not([class*="nav-"]):not([class*="dropdown-"]):not([class*="footer-"]):not(.navbar-brand){color:var(--tenant-primary)}</style><div class="demo-watermark" aria-hidden="true">FOR DEMO WEBSITE</div>
+<nav class="navbar navbar-expand-lg navbar-light app-shell-header px-4 py-3" role="banner">
+  <div class="container-fluid px-0">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="../">
+      <img class="site-logo" src="../logo-heaven-space.svg" alt="The Heaven Space">
+      <span class="fw-bold">The Heaven Space</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavbar" aria-controls="siteNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="siteNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                                        <li class="nav-item"><a class="nav-link" href="../"><i class="bi bi-house-door-fill me-1" aria-hidden="true"></i>Home</a></li>
+                                                  <li class="nav-item dropdown menu-dropdown">
+              <a class="nav-link dropdown-toggle active" href="../about/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-buildings-fill me-1" aria-hidden="true"></i>Company</a>
+              <div class="dropdown-menu advanced-menu">
+                                  <a class="dropdown-item" href="../about/">
+                    <span><i class="bi bi-info-circle-fill me-2" aria-hidden="true"></i>About Us</span>
+                    <small>Culture, mission, and leadership</small>                  </a>
+                                  <a class="dropdown-item active" href="../careers/">
+                    <span><i class="bi bi-briefcase-fill me-2" aria-hidden="true"></i>Careers</span>
+                    <small>Join our real estate technology team</small>                  </a>
+                              </div>
+            </li>
+                                                  <li class="nav-item dropdown menu-dropdown">
+              <a class="nav-link dropdown-toggle active" href="../services/" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-houses-fill me-1" aria-hidden="true"></i>Real Estate</a>
+              <div class="dropdown-menu advanced-menu advanced-menu-wide">
+                                  <a class="dropdown-item" href="../services/">
+                    <span><i class="bi bi-grid-fill me-2" aria-hidden="true"></i>Services</span>
+                    <small>Digital tools for owners, buyers, and vendors</small>                  </a>
+                                  <a class="dropdown-item" href="../layout-map/?type=open-plot">
+                    <span><i class="bi bi-map-fill me-2" aria-hidden="true"></i>Open Plots</span>
+                    <small>Open plots </small>                  </a>
+                                  <a class="dropdown-item" href="../villas/">
+                    <span><i class="bi bi-house-heart-fill me-2" aria-hidden="true"></i>Villas</span>
+                    <small>Rooms, parking, facilities, status and reservations</small>                  </a>
+                                  <a class="dropdown-item" href="../construction-plots/">
+                    <span><i class="bi bi-building-fill me-2" aria-hidden="true"></i>Construction Plots</span>
+                    <small>Project inventory with available, reserved and sold plots</small>                  </a>
+                                  <a class="dropdown-item active" href="../careers/">
+                    <span><i class="bi bi-people-fill me-2" aria-hidden="true"></i>Join Our Team</span>
+                    <small>Partner with us across real estate and construction</small>                  </a>
+                              </div>
+            </li>
+                                                  <li class="nav-item"><a class="nav-link" href="../contact/"><i class="bi bi-telephone-fill me-1" aria-hidden="true"></i>Contact</a></li>
+                          
+                  <li class="nav-item ms-lg-2"><a class="btn btn-primary nav-cta" href="../layout-map/"><i class="bi bi-search-heart-fill me-1" aria-hidden="true"></i>Explore Properties</a></li>
+                &nbsp;&nbsp; 
+        <li class="nav-item promo-notify-item ms-lg-2" id="promoNotifyItem">
+          <button type="button" class="promo-notify-btn" id="promoNotifyButton" aria-haspopup="true" aria-expanded="false" aria-label="Latest update">
+            <i class="bi bi-bell-fill"></i>
+            <span class="promo-notify-dot"></span>
+          </button>
+          <div class="promo-notify-panel" id="promoNotifyPanel">
+            <div class="promo-notify-panel-head">
+              <span><i class="bi bi-megaphone-fill me-1 text-primary"></i>Latest update</span>
+              <button type="button" class="btn-close" id="promoNotifyClose" aria-label="Close"></button>
+            </div>
+            <img id="promoNotifyImage" src="" alt="Latest update">
+            <div class="promo-notify-caption" id="promoNotifyCaption"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollEl = document.querySelector('.app-shell-main');
+    const toggleHeaderState = () => {
+      const scrollTop = scrollEl ? scrollEl.scrollTop : window.scrollY;
+      document.body.classList.toggle('scrolled', scrollTop > 12);
+    };
+    const scrollTargets = [window];
+    if (scrollEl) {
+      scrollTargets.push(scrollEl);
+    }
+    scrollTargets.forEach(target => target.addEventListener('scroll', toggleHeaderState, { passive: true }));
+    toggleHeaderState();
+
+    // Updates bell: lets a visitor see the currently published brochure/offer
+    // image from any page, with a pulsing dot until they open it once.
+    (async () => {
+      const item = document.getElementById('promoNotifyItem');
+      const button = document.getElementById('promoNotifyButton');
+      const panel = document.getElementById('promoNotifyPanel');
+      const closeButton = document.getElementById('promoNotifyClose');
+      const image = document.getElementById('promoNotifyImage');
+      const caption = document.getElementById('promoNotifyCaption');
+      if (!item || !button || !panel) return;
+
+      try {
+        const response = await fetch('/jana_venture_project/api/promotions');
+        const result = await response.json();
+        const promo = result.data;
+        if (!promo || !promo.image) return;
+
+        const seenKey = 'ths_promo_seen_' + promo.id;
+        image.src = '/jana_venture_project/uploads/promotions/' + encodeURIComponent(promo.image);
+        image.alt = promo.title || 'Latest update';
+        if (promo.title) {
+          caption.textContent = promo.title;
+          caption.classList.remove('d-none');
+        } else {
+          caption.classList.add('d-none');
+        }
+
+        item.classList.remove('d-none');
+        if (!localStorage.getItem(seenKey)) {
+          item.classList.add('has-update');
+        }
+
+        const closePanel = () => {
+          panel.classList.remove('show');
+          button.setAttribute('aria-expanded', 'false');
+        };
+
+        button.addEventListener('click', event => {
+          event.stopPropagation();
+          const isOpen = panel.classList.toggle('show');
+          button.setAttribute('aria-expanded', String(isOpen));
+          if (isOpen) {
+            item.classList.remove('has-update');
+            try { localStorage.setItem(seenKey, '1'); } catch (error) { /* ignore storage errors (private mode, etc.) */ }
+          }
+        });
+        closeButton?.addEventListener('click', event => { event.stopPropagation(); closePanel(); });
+        image.addEventListener('click', () => window.open(image.src, '_blank', 'noopener'));
+        document.addEventListener('click', event => { if (!item.contains(event.target)) closePanel(); });
+        document.addEventListener('keydown', event => { if (event.key === 'Escape') closePanel(); });
+      } catch (error) {
+        // A missing/failed promotions fetch should never break navigation.
+        console.error('Unable to load the latest update:', error);
+      }
+    })();
+  });
+</script>
+
+  <main class="container-fluid join-shell px-3 px-lg-4 pb-5 app-shell-main">
+    <section class="join-hero">
+      <div class="row g-0">
+        <div class="col-lg-6 join-visual">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=88" alt="Real estate and construction professionals collaborating on site" fetchpriority="high">
+          <div class="join-visual-content">
+            <span class="eyebrow"><i class="bi bi-buildings"></i> Grow with us</span>
+            <h1 class="fw-bold mt-4 mb-4">Let’s build what’s next. Together.</h1>
+            <p class="fs-5 mb-4">Join a trusted network connecting property, construction, materials, design, and sales professionals.</p>
+            <div class="d-flex gap-4">
+              <div><strong class="fs-3 d-block">One team</strong><span class="small opacity-75">Shared opportunities</span></div>
+              <div class="network-stat"><strong class="fs-3 d-block">6 sectors</strong><span class="small opacity-75">Across real estate</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 join-panel" id="join-form">
+          <span class="section-kicker mb-2">Partner application</span>
+          <h2 class="display-6 fw-bold mb-2">Join our team</h2>
+          <p class="text-muted mb-4">Tell us how you work in real estate. Our team will connect with you about the right opportunities.</p>
+
+          
+          <form action="/jana_venture_project/api/team-applications" method="post" id="joinTeamForm" novalidate>
+            <fieldset class="border-0 p-0 m-0">
+              <legend class="small fw-bold mb-3">I would like to join as</legend>
+              <div class="role-grid mb-4" aria-describedby="designationFeedback">
+                                  <button class="role-option" type="button" data-designation="Builder / Developer" aria-pressed="false"><i class="bi bi-building"></i><strong>Builder / Developer</strong></button>
+                                  <button class="role-option" type="button" data-designation="Iron &amp; Steel Partner" aria-pressed="false"><i class="bi bi-tools"></i><strong>Iron &amp; Steel Partner</strong></button>
+                                  <button class="role-option" type="button" data-designation="Civil Contractor" aria-pressed="false"><i class="bi bi-bricks"></i><strong>Civil Contractor</strong></button>
+                                  <button class="role-option" type="button" data-designation="Architect / Designer" aria-pressed="false"><i class="bi bi-rulers"></i><strong>Architect / Designer</strong></button>
+                                  <button class="role-option" type="button" data-designation="Real Estate Agent" aria-pressed="false"><i class="bi bi-house-check"></i><strong>Real Estate Agent</strong></button>
+                                  <button class="role-option" type="button" data-designation="Supplier / Vendor" aria-pressed="false"><i class="bi bi-truck"></i><strong>Supplier / Vendor</strong></button>
+                              </div>
+              <input type="hidden" name="designation" id="designation" required>
+              <div class="invalid-feedback mb-3" id="designationFeedback">Please choose how you would like to join us.</div>
+            </fieldset>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold" for="fullName">Full name</label>
+              <input class="form-control" id="fullName" name="full_name" type="text" maxlength="150" autocomplete="name" placeholder="Enter your full name" required>
+              <div class="invalid-feedback">Please enter your full name.</div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold" for="email">Email address</label>
+                <input class="form-control" id="email" name="email" type="email" maxlength="150" autocomplete="email" placeholder="you@example.com" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold" for="mobile">Mobile number</label>
+                <input class="form-control" id="mobile" name="mobile" type="tel" minlength="10" maxlength="10" autocomplete="tel" inputmode="numeric" pattern="[0-9]{10}" placeholder="9876543210" aria-describedby="mobileHelp" required>
+                <div class="form-text" id="mobileHelp">Enter exactly 10 digits without the country code.</div>
+                <div class="invalid-feedback">Please enter exactly 10 digits.</div>
+              </div>
+            </div>
+            <div class="website-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+            <button class="btn join-submit w-100 d-flex align-items-center justify-content-center gap-2" type="submit">Send my application <i class="bi bi-arrow-up-right"></i></button>
+            <div class="trust-row mt-3"><span><i class="bi bi-shield-check"></i> Your details stay private</span><span><i class="bi bi-telephone"></i> Personal follow-up</span><span><i class="bi bi-lightning-charge"></i> Quick response</span></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="partner-strip">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-4"><span class="section-kicker">Why partner with us</span><h2 class="h3 fw-bold mt-2 mb-0">Better projects begin with stronger connections.</h2></div>
+        <div class="col-md-4 col-lg"><div class="partner-point"><i class="bi bi-diagram-3-fill"></i><div><strong>Quality network</strong><p class="small text-muted mb-0 mt-1">Connect across the full real estate ecosystem.</p></div></div></div>
+        <div class="col-md-4 col-lg"><div class="partner-point"><i class="bi bi-graph-up-arrow"></i><div><strong>Growth opportunities</strong><p class="small text-muted mb-0 mt-1">Discover projects that match your expertise.</p></div></div></div>
+        <div class="col-md-4 col-lg"><div class="partner-point"><i class="bi bi-hand-thumbs-up-fill"></i><div><strong>Trusted collaboration</strong><p class="small text-muted mb-0 mt-1">Build long-term professional relationships.</p></div></div></div>
+      </div>
+      <div class="overview-strip">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=85" alt="Architect reviewing blueprints" loading="lazy">
+          <figcaption>Architecture &amp; Design</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=900&q=85" alt="Construction site teamwork" loading="lazy">
+          <figcaption>On-site Teamwork</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&q=85" alt="Partner meeting" loading="lazy">
+          <figcaption>Partner Meetings</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+  <footer class="global-footer app-shell-footer">
+  <div class="container-fluid px-4">
+    <div class="global-footer-panel">
+      <div class="row gy-4 align-items-start">
+        <div class="col-lg-5">
+          <a class="footer-brand" href="../">
+            <img src="../logo-heaven-space.svg" alt="The Heaven Space">
+            <span>The Heaven Space</span>
+          </a>
+          <p class="footer-copy mt-3 mb-0">
+            A digital real estate platform for layouts, property owners, building professionals, and buyers.          </p>
+          <div class="footer-chip-row mt-3">
+            <span class="footer-chip">Trusted</span><span class="footer-chip">Modern</span><span class="footer-chip">Transparent</span>          </div>
+                            </div>
+
+                  <div class="col-6 col-lg-2">
+            <h2 class="footer-heading">Pages</h2>
+            <ul class="footer-links">
+                              <li><a href="../"><i class="bi bi-house-door me-2" aria-hidden="true"></i>Home</a></li>
+                              <li><a href="../about/"><i class="bi bi-info-circle me-2" aria-hidden="true"></i>About</a></li>
+                              <li><a href="../services/"><i class="bi bi-grid me-2" aria-hidden="true"></i>Services</a></li>
+                              <li><a href="../careers/"><i class="bi bi-briefcase me-2" aria-hidden="true"></i>Careers</a></li>
+                          </ul>
+          </div>
+                  <div class="col-6 col-lg-2">
+            <h2 class="footer-heading">Layouts</h2>
+            <ul class="footer-links">
+                              <li><a href="../layout-map/"><i class="bi bi-map me-2" aria-hidden="true"></i>Explore Properties</a></li>
+                              <li><a href="../contact/"><i class="bi bi-chat-dots me-2" aria-hidden="true"></i>Enquire</a></li>
+                          </ul>
+          </div>
+        
+        <div class="col-lg-3">
+          <h2 class="footer-heading">Contact</h2>
+          <p class="footer-copy mb-2">Vijayasanthi Homes, Dilshukhnagar, Hyderabad - 500060</p>
+          <p class="footer-copy mb-2">info@theheavenspace.com</p>
+          <p class="footer-copy mb-0">89854 48044</p>
+        </div>
+      </div>
+
+      <!-- <div class="footer-bottom">
+        <span>&copy; 2026 The Heaven Space. All rights reserved.</span>
+        <a class="footer-admin-link" href="/jana_venture_project/admin/login" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-shield-lock me-1"></i>Admin Portal
+        </a>
+      </div> -->
+    </div>
+  </div>
+</footer>
+<a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+<div class="cookie-consent" id="cookieConsent" role="dialog" aria-modal="true" aria-labelledby="cookieConsentTitle" hidden>
+  <div class="cookie-consent-copy">
+    <strong id="cookieConsentTitle"><i class="bi bi-shield-check me-2"></i>Your privacy choices</strong>
+    <p>We use an optional first-party cookie to record one initial visit and understand advertising performance. Cookies cannot access your Google name or email. Google details are shared only if you explicitly use Google Sign-In.</p>
+  </div>
+  <div class="cookie-consent-actions">
+    <button class="btn btn-outline-light" id="rejectCookies" type="button">Reject optional cookies</button>
+    <button class="btn btn-light" id="acceptCookies" type="button">Accept cookies</button>
+  </div>
+</div>
+<style>
+  .cookie-consent{position:fixed;z-index:1090;left:1rem;right:1rem;bottom:calc(var(--site-footer-height, 100px) + 1rem);max-width:980px;margin:auto;padding:1.15rem 1.25rem;border-radius:18px;background:#102820;color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;transition:bottom .2s ease}
+  .cookie-consent[hidden]{display:none}.cookie-consent-copy{max-width:650px}.cookie-consent-copy strong{display:block;margin-bottom:.35rem}.cookie-consent-copy p{margin:0;color:rgba(255,255,255,.75);font-size:.88rem}.cookie-consent-actions{display:flex;gap:.65rem;flex:0 0 auto}.cookie-consent-actions .btn{white-space:nowrap}
+  @media(max-width:767px){.cookie-consent{align-items:stretch;flex-direction:column}.cookie-consent-actions{display:grid;grid-template-columns:1fr}.cookie-consent-actions .btn{width:100%}}
+</style>
+<script>
+  (() => {
+    const setFooterOffset = () => {
+      const footer = document.querySelector('.app-shell-footer');
+      if (footer) document.documentElement.style.setProperty('--site-footer-height', `${footer.offsetHeight}px`);
+    };
+    setFooterOffset();
+    window.addEventListener('resize', setFooterOffset, { passive: true });
+    const footerEl = document.querySelector('.app-shell-footer');
+    if (footerEl) new ResizeObserver(setFooterOffset).observe(footerEl);
+
+    const consent = document.getElementById('cookieConsent');
+    const readCookie = name => document.cookie.split('; ').find(row => row.startsWith(`${name}=`))?.split('=')[1] || '';
+    if (!readCookie('ths_cookie_consent')) consent.hidden = false;
+    const saveConsent = accepted => {
+      const secure = location.protocol === 'https:' ? '; Secure' : '';
+      document.cookie = `ths_cookie_consent=${accepted ? 'accepted' : 'rejected'}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`;
+      if (!accepted) document.cookie = `ths_visitor_id=; Max-Age=0; Path=/; SameSite=Lax${secure}`;
+      consent.hidden = true;
+      if (accepted) location.reload();
+    };
+    document.getElementById('acceptCookies')?.addEventListener('click', () => saveConsent(true));
+    document.getElementById('rejectCookies')?.addEventListener('click', () => saveConsent(false));
+
+    const backToTop = document.getElementById('backToTop');
+    const scrollHost = document.querySelector('.app-shell-main');
+    const toggleBackToTop = () => {
+      const scrollTop = scrollHost ? scrollHost.scrollTop : window.scrollY;
+      backToTop?.classList.toggle('show', scrollTop > 300);
+    };
+    const scrollHosts = [window];
+    if (scrollHost) scrollHosts.push(scrollHost);
+    scrollHosts.forEach(target => target.addEventListener('scroll', toggleBackToTop, { passive: true }));
+    toggleBackToTop();
+    backToTop?.addEventListener('click', event => {
+      event.preventDefault();
+      (scrollHost || window).scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/protection.js"></script>
+  <script>
+    (() => {
+      const form = document.getElementById('joinTeamForm');
+      const designation = document.getElementById('designation');
+      const feedback = document.getElementById('designationFeedback');
+      const mobile = document.getElementById('mobile');
+      mobile.addEventListener('input', () => {
+        mobile.value = mobile.value.replace(/\D/g, '').slice(0, 10);
+      });
+      document.querySelectorAll('.role-option').forEach(option => {
+        option.addEventListener('click', () => {
+          document.querySelectorAll('.role-option').forEach(item => {
+            item.classList.remove('active');
+            item.setAttribute('aria-pressed', 'false');
+          });
+          option.classList.add('active');
+          option.setAttribute('aria-pressed', 'true');
+          designation.value = option.dataset.designation;
+          feedback.style.display = 'none';
+        });
+      });
+      form.addEventListener('submit', event => {
+        const roleSelected = Boolean(designation.value);
+        feedback.style.display = roleSelected ? 'none' : 'block';
+        if (!form.checkValidity() || !roleSelected) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      });
+    })();
+  </script>
+</body>
+</html>

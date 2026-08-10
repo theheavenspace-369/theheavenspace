@@ -1,0 +1,49 @@
+{
+    "data": [
+        {
+            "id": 30,
+            "layout_key": "akshaya_layout",
+            "location_name": "government hospital, kandukuru",
+            "title": "Akshaya Layouts",
+            "description": null,
+            "layout_file": "11ab10824a380588cdd2db6b.svg",
+            "is_active": 1,
+            "sort_order": 0,
+            "created_at": "2026-08-09 00:19:37",
+            "layout_code": "akshaya_layout",
+            "vendor_id": "e02040d3-81d9-11f1-87aa-04cf4ba169a8",
+            "project_category": "609a192e-8333-11f1-87aa-04cf4ba169a8",
+            "video_url": "https://www.youtube.com/watch?v=P7s-iK7Sisw",
+            "cover_image": "d381cf8273a29722d1a7dbc0.jpg",
+            "cover_image_updated_at": "2026-08-08 20:54:59",
+            "gallery_items": "[{\"id\": \"230bf2e73e7d387e\", \"text\": \"\", \"image\": \"3fd8ef80314435379b747e67.jpg\", \"title\": \"test2\"}, {\"id\": \"c662204abfb070ca\", \"text\": \"\", \"image\": \"33cbb66f2d0838aa97b9d762.jpg\", \"title\": \"gal2\"}]",
+            "events": "[{\"id\": \"1261a9734e5ab4f6\", \"text\": \"\", \"image\": \"9f54f383ceac5caeb21fce8f.jpg\", \"title\": \"event1\"}, {\"id\": \"ccb7da0c693e2e7f\", \"text\": \"\", \"image\": \"feefa949b646e5aa6bd329bc.jpg\", \"title\": \"event2\"}]",
+            "category_name": "Construction Plots",
+            "category_type": "Construction",
+            "file_available": true
+        },
+        {
+            "id": 28,
+            "layout_key": "test-construction",
+            "location_name": "Construction Experience Demo",
+            "title": "Construction Experience Demo",
+            "description": "Constructions are ending with your aims",
+            "layout_file": "premium-villa-test.png",
+            "is_active": 1,
+            "sort_order": 90,
+            "created_at": "2026-08-05 12:44:31",
+            "layout_code": "TEST-CONSTRUCTION",
+            "vendor_id": "001c6413-81d1-11f1-87aa-04cf4ba169a8",
+            "project_category": "609a192e-8333-11f1-87aa-04cf4ba169a8",
+            "video_url": null,
+            "cover_image": "construction-project-test.png",
+            "cover_image_updated_at": null,
+            "gallery_items": null,
+            "events": null,
+            "category_name": "Construction Plots",
+            "category_type": "Construction",
+            "file_available": true
+        }
+    ],
+    "error": null
+}

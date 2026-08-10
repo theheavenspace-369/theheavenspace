@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tasklist //FI \"IMAGENAME eq php.exe\")",
+      "Bash(powershell -Command \"Get-Process php -ErrorAction SilentlyContinue | Stop-Process -Force\")",
+      "Bash(composer --version)",
+      "Bash(php -v)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" https://packagist.org)",
+      "Bash(git status *)",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -l \"app\\\\templates\\\\admin_roles.php\")",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -l \"app\\\\src\\\\api\\\\admin\\\\vendors.php\")",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -l \"app\\\\src\\\\uploads.php\")",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -l \"index.php\")",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -l \"app\\\\public\\\\index.php\")",
+      "Read(//d/Makaan/Makaan/**)",
+      "Read(//d/Makaan/Makaan/css/**)",
+      "Bash(cp styles.css /tmp/styles.css.bak)",
+      "Bash(cp styles.css styles.css.bak)",
+      "Bash(python3 -)",
+      "Bash(node -e ' *)",
+      "PowerShell(& \"C:\\\\xampp\\\\php\\\\php.exe\" -l \"app\\\\templates\\\\partials\\\\property-page-shell.php\")",
+      "Bash(mkdir -p \"/c/Users/heman/AppData/Local/Temp/claude/c--xampp-htdocs-jana-venture-project/0bb396a7-a6ee-41ab-b96c-2dd097a433e6/scratchpad\")",
+      "Bash(\"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\" --headless --disable-gpu --screenshot=\"C:\\\\Users\\\\heman\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--xampp-htdocs-jana-venture-project\\\\0bb396a7-a6ee-41ab-b96c-2dd097a433e6\\\\scratchpad\\\\about_page.png\" --window-size=1600,2600 \"http://localhost/jana_venture_project/about\")",
+      "Bash(curl -s -o \"C:\\\\Users\\\\heman\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--xampp-htdocs-jana-venture-project\\\\0bb396a7-a6ee-41ab-b96c-2dd097a433e6\\\\scratchpad\\\\check1.jpg\" \"https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=400&q=60\" --max-time 8)",
+      "Bash(curl -s -o check2.jpg \"https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=400&q=60\" --max-time 8)",
+      "Bash(curl -s -o check3.jpg \"https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=400&q=60\" --max-time 8)",
+      "Bash(curl -s -o check4.jpg \"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=60\" --max-time 8)",
+      "Bash(grep -o '<path[^>]*id=\"plot_[^\"]*\"[^>]*>' \"/c/Users/heman/harikrishna_projects/heaven_space_files/layouts/kubera_layout.svg\" | head -3)",
+      "Read(//c/Users/heman/harikrishna_projects/heaven_space_files/layouts/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(grep -o '.\\\\{80\\\\}id=\"plot_8\".\\\\{120\\\\}' \"/c/Users/heman/harikrishna_projects/heaven_space_files/layouts/kubera_layout.svg\")",
+      "Bash(node -e \"require\\('jsdom'\\); console.log\\('has jsdom'\\)\")",
+      "Bash(node --check /c/xampp/htdocs/jana_venture_project/app/public/assets/js/layout-map.js)",
+      "Bash(node --check /c/xampp/htdocs/jana_venture_project/app/public/assets/js/property-pages.js)",
+      "Bash(node --check /c/xampp/htdocs/jana_venture_project/app/public/assets/js/shared-property-ui.js)",
+      "Bash(cd \"c:/xampp/htdocs/jana_venture_project\" && rm -rf app index.php .htaccess docs .env.example heaven_files *)"
+    ]
+  }
+}
