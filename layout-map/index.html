@@ -232,7 +232,7 @@
                                         id="searchPlotButton"
                                         type="button"
                                         class="btn btn-primary px-4"
-                                        aria-label="Search plot number" onclick ="searchPlot(event)">
+                                        aria-label="Search plot number">
                                         <i class="bi bi-search"></i>
                                     </button>
                                 </div>
@@ -352,12 +352,27 @@
                             </button>
                         </div>
                         
-                        <div
-                            id="svgWrapper"
-                            class="svg-wrapper">
+                        <div class="map-zoom-shell">
+                            <div class="zoom-controls" role="group" aria-label="Map zoom controls">
+                                <button type="button" id="zoomOut" class="btn btn-outline-secondary" aria-label="Zoom out">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                                <span id="zoomLevel" class="zoom-level-badge">100%</span>
+                                <button type="button" id="zoomIn" class="btn btn-outline-secondary" aria-label="Zoom in">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                                <button type="button" id="zoomReset" class="btn btn-outline-secondary" aria-label="Reset zoom">
+                                    <i class="bi bi-arrow-counterclockwise"></i>
+                                </button>
+                            </div>
 
-                            <div id="svgContainer" class="position-relative"></div>
+                            <div
+                                id="svgWrapper"
+                                class="svg-wrapper">
 
+                                <div id="svgContainer" class="position-relative"></div>
+
+                            </div>
                         </div>
 
                         <div id="propertyCardsView" class="property-cards-view d-none" aria-live="polite"></div>
@@ -594,6 +609,23 @@
                 <button type="button" id="confirmInterestButton" class="btn btn-primary">
                     <i class="bi bi-check-lg"></i> Yes, Register Me
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SOLD PLOT PAYMENT & REGISTRATION TRACKING -->
+<div class="modal fade" id="paymentTrackingModal" tabindex="-1" aria-labelledby="paymentTrackingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentTrackingModalLabel"><i class="bi bi-cash-coin text-danger"></i> Payment &amp; Registration Progress</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="paymentTrackingBody"></div>
+            <div class="modal-footer">
+                <small class="text-muted me-auto"><i class="bi bi-info-circle"></i> This plot is sold and no longer available.</small>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

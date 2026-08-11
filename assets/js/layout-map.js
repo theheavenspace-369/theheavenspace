@@ -4,6 +4,9 @@ let originalPlots = [];
 let selectedPlot = null;
 
 let currentScale = 1;
+let svgElement = null;
+let svgBaseWidth = 0;
+let svgBaseHeight = 0;
 
 let mapLayer = null;
 
@@ -130,18 +133,18 @@ function initializeEvents() {
             )
         );
 
-    // document
-    //     .getElementById('searchPlot')
-    //     ?.addEventListener(
-    //         'keydown',
-    //         event => {
-    //             if (event.key === 'Enter') {
-    //                 event.preventDefault();
-    //                 window.clearTimeout(searchPlotDebounceTimer);
-    //                 searchPlot(event);
-    //             }
-    //         }
-    //     );
+    document
+        .getElementById('searchPlot')
+        ?.addEventListener(
+            'keydown',
+            event => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    window.clearTimeout(searchPlotDebounceTimer);
+                    searchPlot(event);
+                }
+            }
+        );
 
     // document
     //     .getElementById('searchPlot')
@@ -169,9 +172,9 @@ function initializeEvents() {
             searchPlot
         );
 
-    // Zoom controls are currently disabled in the layout template.
-    // document.getElementById('zoomIn')?.addEventListener('click', zoomIn);
-    // document.getElementById('zoomOut')?.addEventListener('click', zoomOut);
+    document.getElementById('zoomIn')?.addEventListener('click', zoomIn);
+    document.getElementById('zoomOut')?.addEventListener('click', zoomOut);
+    document.getElementById('zoomReset')?.addEventListener('click', zoomReset);
 
     document
         .getElementById('bookingForm')
@@ -800,6 +803,11 @@ async function loadPlots() {
 
 function clearMap(message) {
     configureInventoryView();
+    svgElement = null;
+    svgBaseWidth = 0;
+    svgBaseHeight = 0;
+    currentScale = 1;
+    updateZoomControls();
     if (getExperienceMode() !== 'plot') {
         const cards = document.getElementById('propertyCardsView');
         if (cards) cards.innerHTML = `<div class="empty-layout-state"><i class="bi bi-grid"></i><p>${escapeReviewText(message)}</p></div>`;
@@ -925,6 +933,15 @@ async function loadSvg(
         }
 
         console.log('SVG loaded successfully');
+
+        svg.style.removeProperty('width');
+        svg.style.removeProperty('height');
+        svgElement = svg;
+        currentScale = 1;
+        const svgRect = svg.getBoundingClientRect();
+        svgBaseWidth = svgRect.width;
+        svgBaseHeight = svgRect.height;
+        updateZoomControls();
 
         mapLayer =
             svg.querySelector('g');
@@ -1229,6 +1246,56 @@ async function showInterestedCustomers(plot) {
     }
 }
 
+function formatTrackingAmount(amount) {
+    return `₹${Number(amount || 0).toLocaleString()}`;
+}
+
+function formatTrackingDate(value) {
+    if (!value) return '';
+    const parsed = new Date(String(value).replace(' ', 'T'));
+    if (Number.isNaN(parsed.getTime())) return '';
+    return parsed.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Shows the customer-facing progress timeline for a sold plot: token amount,
+// balance payment, then registration. Replaces the old plain "already sold"
+// popup so buyers can see how far along their purchase is.
+function showPaymentTracking(plot) {
+    const modalElement = document.getElementById('paymentTrackingModal');
+    const body = document.getElementById('paymentTrackingBody');
+    if (!modalElement || !body) return;
+
+    const stages = [
+        { label: 'Token Amount Paid', amount: plot.token_amount, date: plot.token_paid_date },
+        { label: 'Balance Payment', amount: plot.balance_amount, date: plot.balance_paid_date },
+        { label: 'Registration Completed', amount: null, date: plot.registration_date }
+    ];
+
+    const anyProgress = stages.some(stage => stage.date);
+    const totalPaid = (Number(plot.token_amount) || 0) + (Number(plot.balance_amount) || 0);
+
+    const stagesHtml = stages.map(stage => {
+        const complete = Boolean(stage.date);
+        const detail = complete
+            ? `${stage.amount !== null ? `${formatTrackingAmount(stage.amount)} &middot; ` : ''}${formatTrackingDate(stage.date)}`
+            : 'Pending';
+        return `<li class="payment-stage ${complete ? 'is-complete' : 'is-pending'}">
+            <span class="payment-stage-icon"><i class="bi ${complete ? 'bi-check-circle-fill' : 'bi-circle'}"></i></span>
+            <div class="payment-stage-body">
+                <div class="payment-stage-label">${escapeReviewText(stage.label)}</div>
+                <div class="payment-stage-detail">${detail}</div>
+            </div>
+        </li>`;
+    }).join('');
+
+    body.innerHTML = `<div class="text-center mb-3"><strong>Plot ${escapeReviewText(plot.plot_number)}</strong><div class="text-danger fw-bold small">SOLD</div></div>
+        ${totalPaid > 0 ? `<div class="payment-total-paid">Total received so far: <strong>${formatTrackingAmount(totalPaid)}</strong></div>` : ''}
+        <ul class="payment-stage-list">${stagesHtml}</ul>
+        ${anyProgress ? '' : '<p class="text-muted small text-center mt-3 mb-0">Payment tracking will be updated here soon.</p>'}`;
+
+    bootstrap.Modal.getOrCreateInstance(modalElement).show();
+}
+
 function isCornerPlot(plot) {
     return ['1', 'true', 'yes'].includes(String(plot?.is_corner_plot).toLowerCase());
 }
@@ -1425,9 +1492,7 @@ function bindPlots() {
                 () => {
                     clearPlotSelection();
                     hideTooltip();
-                    const mode = getExperienceMode();
-                    const label = mode === 'villa' ? 'Villa' : mode === 'construction' ? 'Construction option' : 'Plot';
-                    AppPopup.error(`${label} ${plot.plot_number} has already been sold.`, 'Already sold');
+                    showPaymentTracking(plot);
                 }
             );
 
@@ -1616,8 +1681,11 @@ function registerInterestFromConfirmation() {
 }
 
 function searchPlot(event) {
+    // Always read the search box directly. Reading event.target.value was the
+    // bug here: clicking the search button (or its icon) makes event.target
+    // the button/icon element, not the input, so the typed value was lost.
     const input = document.getElementById('searchPlot');
-    const value = String(event?.target?.value ?? input?.value ?? '').trim();
+    const value = String(input?.value ?? '').trim();
     window.clearTimeout(searchPlotDebounceTimer);
 
     if (!value) {
@@ -1655,36 +1723,42 @@ function showSearchFeedback(message, type = 'info') {
     target.classList.remove('d-none');
 }
 
-function zoomIn() {
+// Zooming used to scale the inner <g> layer, but the outer <svg> kept its
+// original width/height, so anything past that boundary was simply clipped
+// and zooming in appeared to do nothing. Resizing the <svg> element itself
+// (viewBox stays fixed) scales everything correctly and lets #svgWrapper's
+// existing overflow:auto handle panning to the zoomed-in area.
+function applyZoom(scale) {
+    currentScale = Math.min(3, Math.max(0.5, Math.round(scale * 100) / 100));
 
-    if (!mapLayer) {
-        return;
+    if (svgElement && svgBaseWidth && svgBaseHeight) {
+        svgElement.style.width = `${svgBaseWidth * currentScale}px`;
+        svgElement.style.height = `${svgBaseHeight * currentScale}px`;
     }
 
-    currentScale += 0.1;
+    updateZoomControls();
+}
 
-    mapLayer.setAttribute(
-        'transform',
-        `scale(${currentScale})`
-    );
+function zoomIn() {
+    applyZoom(currentScale + 0.2);
 }
 
 function zoomOut() {
+    applyZoom(currentScale - 0.2);
+}
 
-    if (!mapLayer) {
-        return;
-    }
+function zoomReset() {
+    applyZoom(1);
+}
 
-    currentScale =
-        Math.max(
-            0.5,
-            currentScale - 0.1
-        );
+function updateZoomControls() {
+    const zoomLevel = document.getElementById('zoomLevel');
+    if (zoomLevel) zoomLevel.textContent = `${Math.round(currentScale * 100)}%`;
 
-    mapLayer.setAttribute(
-        'transform',
-        `scale(${currentScale})`
-    );
+    const zoomInButton = document.getElementById('zoomIn');
+    const zoomOutButton = document.getElementById('zoomOut');
+    if (zoomInButton) zoomInButton.disabled = !svgElement || currentScale >= 3;
+    if (zoomOutButton) zoomOutButton.disabled = !svgElement || currentScale <= 0.5;
 }
 
 function openBooking(
