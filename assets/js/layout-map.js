@@ -75,7 +75,29 @@ function addPlotHtmlActions(plot, svgPlot) {
         const scale = Math.max(.62, Math.min(1, rect.width / 72, rect.height / 72));
         overlayPlot = plot;
         overlayPlotElement = svgPlot;
-        overlay.innerHTML = `<button type="button" data-open-plot-action="reviews" title="View reviews"><i class="bi bi-eye-fill"></i><span>${Number(plot.review_count) || 0}</span></button><button type="button" data-open-plot-action="add-review" title="Add review"><i class="bi bi-star-fill"></i></button><button type="button" data-open-plot-action="interest" title="Interested customers"><i class="bi bi-people-fill"></i><span>${Number(plot.total_members) || 0}</span></button>`;
+        overlay.innerHTML = `<button type="button"
+        data-open-plot-action="reviews"
+        title="View reviews">
+    <i class="bi bi-eye-fill"></i>
+    <span>${Number(plot.review_count) || 0}</span>
+</button>
+
+<button type="button"
+        data-open-plot-action="add-review"
+        title="Add review">
+    <i class="bi bi-star-fill"></i>
+</button>
+
+${
+    Number(plot.total_members) > 0
+        ? `<button type="button"
+                   data-open-plot-action="interest"
+                   title="Interested customers">
+               <i class="bi bi-people-fill"></i>
+               <span>${Number(plot.total_members)}</span>
+           </button>`
+        : ''
+}`;
         overlay.style.left = `${Math.max(2, rect.right - 68 * scale)}px`;
         overlay.style.top = `${Math.max(2, rect.top + 2)}px`;
         overlay.style.transform = `scale(${scale})`;
