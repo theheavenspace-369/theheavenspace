@@ -1744,11 +1744,11 @@ function applyZoom(scale) {
 }
 
 function zoomIn() {
-    applyZoom(currentScale + 0.2);
+    applyZoom(currentScale + 0.1);
 }
 
 function zoomOut() {
-    applyZoom(currentScale - 0.2);
+    applyZoom(currentScale - 0.1);
 }
 
 function zoomReset() {
