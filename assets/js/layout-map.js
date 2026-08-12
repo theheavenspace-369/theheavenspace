@@ -1733,7 +1733,7 @@ function showSearchFeedback(message, type = 'info') {
 // (viewBox stays fixed) scales everything correctly and lets #svgWrapper's
 // existing overflow:auto handle panning to the zoomed-in area.
 function applyZoom(scale) {
-    currentScale = Math.min(3, Math.max(0.5, Math.round(scale * 100) / 100));
+    currentScale = Math.min(3, Math.max(0.1, Math.round(scale * 100) / 100));
 
     if (svgElement && svgBaseWidth && svgBaseHeight) {
         svgElement.style.width = `${svgBaseWidth * currentScale}px`;
@@ -1762,7 +1762,7 @@ function updateZoomControls() {
     const zoomInButton = document.getElementById('zoomIn');
     const zoomOutButton = document.getElementById('zoomOut');
     if (zoomInButton) zoomInButton.disabled = !svgElement || currentScale >= 3;
-    if (zoomOutButton) zoomOutButton.disabled = !svgElement || currentScale <= 0.5;
+    if (zoomOutButton) zoomOutButton.disabled = !svgElement || currentScale <= 0.1;
 }
 
 function openBooking(
