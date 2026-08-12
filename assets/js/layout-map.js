@@ -1967,25 +1967,8 @@ async function submitBooking(
     console.log('Submitting booking:', payload);
 
     try {
-        const response =
-            await fetch(
-                API_URL('/enquiries'), 
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                }
-            );
+        const result = await StaticDataShim.createEnquiry(payload);
 
-        console.log('Booking response status:', response.status);
-
-        if (!response.ok) {
-            throw new Error('Failed to submit booking: ' + response.status);
-        }
-
-        const result = await response.json();
         console.log('Booking response:', result);
 
         if (result.error) {

@@ -75,25 +75,22 @@
         try {
             if (!inReviewStage) {
                 const formData = new FormData(form);
-                const data = await request(apiEndpoint('/enquiries'), {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        project_layout_id: reservationContext.layout.id,
-                        plot_id: reservationContext.property.id,
-                        plot_number: reservationContext.property.plot_number,
-                        full_name: formData.get('full_name'),
-                        mobile: formData.get('mobile'),
-                        email: formData.get('email'),
-                        city: formData.get('city'),
-                        budget_range: formData.get('budget_range'),
-                        appointment_datetime: formData.get('appointment_datetime'),
-                        message: formData.get('note'),
-                        source: `${reservationContext.type}_reservation`,
-                        reserve_inventory: true,
-                        referral_code: new URLSearchParams(window.location.search).get('ref') || ''
-                    })
+                const data = await window.StaticDataShim.createEnquiry({
+                    project_layout_id: reservationContext.layout.id,
+                    plot_id: reservationContext.property.id,
+                    plot_number: reservationContext.property.plot_number,
+                    full_name: formData.get('full_name'),
+                    mobile: formData.get('mobile'),
+                    email: formData.get('email'),
+                    city: formData.get('city'),
+                    budget_range: formData.get('budget_range'),
+                    appointment_datetime: formData.get('appointment_datetime'),
+                    message: formData.get('note'),
+                    source: `${reservationContext.type}_reservation`,
+                    reserve_inventory: true,
+                    referral_code: new URLSearchParams(window.location.search).get('ref') || ''
                 });
+                if (data.error) throw new Error(data.error);
                 reservationId = data.data?.id || data.id || null;
                 byId('sharedBookingStage')?.classList.add('d-none');
                 byId('sharedReviewStage')?.classList.remove('d-none');
@@ -110,18 +107,15 @@
             }
 
             const formData = new FormData(form);
-            await request(apiEndpoint('/reviews'), {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    enquiry_id: reservationId,
-                    project_layout_id: reservationContext.layout.id,
-                    plot_id: reservationContext.property.id,
-                    customer_name: formData.get('full_name'),
-                    rating: Number(formData.get('review_rating')),
-                    comments: formData.get('review_comments')
-                })
+            const reviewResult = await window.StaticDataShim.createReview({
+                enquiry_id: reservationId,
+                project_layout_id: reservationContext.layout.id,
+                plot_id: reservationContext.property.id,
+                customer_name: formData.get('full_name'),
+                rating: Number(formData.get('review_rating')),
+                comments: formData.get('review_comments')
             });
+            if (reviewResult.error) throw new Error(reviewResult.error);
 
             bootstrap.Modal.getInstance(byId('sharedPropertyBookingModal'))?.hide();
             window.AppPopup?.success('Reservation and review submitted successfully.');
@@ -138,17 +132,14 @@
         const form = event.currentTarget;
         const formData = new FormData(form);
         try {
-            await request(apiEndpoint('/reviews'), {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    project_layout_id: reviewContext.layout?.id || null,
-                    plot_id: reviewContext.property?.id || null,
-                    customer_name: formData.get('customer_name'),
-                    rating: Number(formData.get('rating')),
-                    comments: formData.get('comments')
-                })
+            const result = await window.StaticDataShim.createReview({
+                project_layout_id: reviewContext.layout?.id || null,
+                plot_id: reviewContext.property?.id || null,
+                customer_name: formData.get('customer_name'),
+                rating: Number(formData.get('rating')),
+                comments: formData.get('comments')
             });
+            if (result.error) throw new Error(result.error);
             bootstrap.Modal.getInstance(byId('propertyAddReviewModal'))?.hide();
             form.reset();
             window.AppPopup?.success('Thank you. Your review was added.');

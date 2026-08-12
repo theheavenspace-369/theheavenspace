@@ -311,4 +311,15 @@
 
         return Promise.resolve(emptyList());
     };
+
+    // Direct, no-network entry points for the write endpoints above. Some
+    // hosts (static file servers, certain CDNs) reject any non-GET request
+    // with a real 405 before the page's JS ever gets a chance to run the
+    // fetch override, so form submissions call these directly instead of
+    // going through fetch('/api/...').
+    window.StaticDataShim = {
+        createEnquiry: function (body) { return handleCreateEnquiry(body).then(function (response) { return response.json(); }); },
+        createReview: function (body) { return handleCreateReview(body).then(function (response) { return response.json(); }); },
+        createContact: function (body) { return handleCreateContact(body).then(function (response) { return response.json(); }); }
+    };
 })();
