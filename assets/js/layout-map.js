@@ -1220,7 +1220,7 @@ async function showInterestedCustomers(plot) {
         return SharedPropertyUI.interests(plot, mode === 'villa' ? 'Villa' : mode === 'construction' ? 'Construction Plot' : 'Plot');
     }
     if ((Number(plot?.total_members) || 0) <= 0) {
-        AppPopup?.show('No customers have registered interest in this property yet.', 'No interested buyers');
+        AppPopup?.show('Please reserve your plot.', 'Interested buyers');
         return;
     }
     const modalElement = document.getElementById('interestedCustomersModal');
