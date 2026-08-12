@@ -190,14 +190,14 @@
                                 <div class="property-type-tabs nav nav-pills gap-2 mt-4" id="propertyTypeTabs" role="tablist" aria-label="Property categories">
                 </div>
                 
-                <div class="row justify-content-end mt-3">
+                <div class="row mt-3">
                     <div class="col-md-6 col-lg-4">
-                        <label for="layoutSelect" class="form-label fw-semibold mb-1">
-                            <i class="bi bi-pin-map"></i> Select Project
-                        </label>
-                        <select id="layoutSelect" class="form-select form-select-lg border-0 bg-light shadow-sm">
-                            <option value="">Loading layouts...</option>
-                        </select>
+                        <div class="project-select-shell">
+                            <i class="bi bi-pin-map-fill project-select-icon"></i>
+                            <select id="layoutSelect" class="form-select form-select-lg shadow-sm project-select" aria-label="Select project">
+                                <option value="">Loading layouts...</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

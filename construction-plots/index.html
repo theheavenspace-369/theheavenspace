@@ -142,8 +142,11 @@
 </script>
 <main class="container-fluid px-4 pb-5 app-shell-main"><section class="property-page-hero construction-hero"><div><span class="property-eyebrow"><i class="bi bi-building-fill"></i> Live plot inventory</span><h1>Construction Plots</h1><p>Review one construction project with every available, reserved and sold plot clearly accounted for.</p></div></section>
 <section class="property-page-toolbar">
-    <label for="propertyProjectSelect">Select project</label>
-    <select id="propertyProjectSelect" class="form-select"><option>Loading projects...</option></select></section>
+    <div class="project-select-shell">
+        <i class="bi bi-pin-map-fill project-select-icon"></i>
+        <select id="propertyProjectSelect" class="form-select project-select" aria-label="Select project"><option>Loading projects...</option></select>
+    </div>
+</section>
 <div id="propertyPageContent" class="property-page-content" aria-live="polite">
     <div class="property-loading"><span class="spinner-border">
         

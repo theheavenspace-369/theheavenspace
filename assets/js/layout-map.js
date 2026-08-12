@@ -392,9 +392,7 @@ async function loadLayouts() {
     }
 
     const requiresSvg = selectedPropertyType.toLowerCase() === 'open plot';
-    selectedLayout = projectLayouts.find(layout => !requiresSvg || layout.file_available !== false)
-        || projectLayouts[0]
-        || null;
+    selectedLayout = null;
 
     if (!layoutSelect) {
         return;
@@ -411,6 +409,9 @@ async function loadLayouts() {
     }
 
     layoutSelect.disabled = false;
+    const placeholder = new Option('Select Project', '', true, true);
+    placeholder.disabled = true;
+    layoutSelect.appendChild(placeholder);
     projectLayouts.forEach((layout, index) => {
         const option = document.createElement('option');
         option.value = String(layout.id ?? layout.layout_key ?? layout.slug ?? index);
@@ -422,7 +423,7 @@ async function loadLayouts() {
         layoutSelect.appendChild(option);
     });
 
-    layoutSelect.value = String(selectedLayout?.id ?? selectedLayout?.layout_key ?? selectedLayout?.slug ?? '');
+    layoutSelect.value = '';
 
     updateLayoutDescription();
 }
@@ -448,9 +449,12 @@ async function changeLayoutType(layoutType) {
 }
 
 function changeLayout(event) {
-    selectedLayout = projectLayouts.find((layout, index) =>
-        String(layout.id ?? layout.layout_key ?? layout.slug ?? index) === event.target.value
-    ) || projectLayouts[0] || null;
+    const value = event.target.value;
+    selectedLayout = value
+        ? projectLayouts.find((layout, index) =>
+            String(layout.id ?? layout.layout_key ?? layout.slug ?? index) === value
+        ) || null
+        : null;
 
     updateLayoutDescription();
     loadPlots();
@@ -745,7 +749,7 @@ async function loadPlots() {
 
         const layoutId = selectedLayout?.id ?? selectedLayout?.layout_key ?? selectedLayout?.slug;
         if (!layoutId) {
-            clearMap('Select a project when one becomes available.');
+            clearMap('Select a project above to view its available plots.');
             updateStats();
             return;
         }
