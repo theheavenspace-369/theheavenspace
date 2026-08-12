@@ -16,6 +16,7 @@
     var SNAPSHOT_BASE = '../snapshot';
     var STORAGE_ENQUIRIES = 'staticShim.enquiries';
     var STORAGE_REVIEWS = 'staticShim.reviews';
+    var STORAGE_CONTACTS = 'staticShim.contacts';
     var originalFetch = window.fetch ? window.fetch.bind(window) : null;
 
     function jsonResponse(body, status) {
@@ -128,6 +129,33 @@
 
             return jsonResponse({ data: { id: id, total_members: totalMembers }, error: null }, 201);
         });
+    }
+
+    // "Get In Touch" style forms (contact page, services page) - there's no
+    // server to email/store these, so they're kept in localStorage as JSON
+    // the same way enquiries/reviews are, purely so the demo has somewhere
+    // real to put the submission instead of failing outright.
+    function handleCreateContact(body) {
+        var fullName = String(body.full_name || '').trim();
+        var email = String(body.email || '').trim();
+        if (!fullName) return Promise.resolve(jsonResponse({ data: null, error: 'Please provide your name.' }, 422));
+        if (!email) return Promise.resolve(jsonResponse({ data: null, error: 'Please provide your email address.' }, 422));
+
+        var contacts = loadLocal(STORAGE_CONTACTS);
+        var id = uid();
+        contacts.push({
+            id: id,
+            full_name: fullName,
+            mobile: body.mobile || null,
+            address: body.address || null,
+            email: email,
+            requirement: body.requirement || null,
+            message: body.message || null,
+            source: body.source || null,
+            created_at: nowIso()
+        });
+        saveLocal(STORAGE_CONTACTS, contacts);
+        return Promise.resolve(jsonResponse({ data: { id: id }, error: null }, 201));
     }
 
     function handleCreateReview(body) {
@@ -243,6 +271,7 @@
             var body = readBody(init);
             if (api.endpoint === 'enquiries') return handleCreateEnquiry(body);
             if (api.endpoint === 'reviews') return handleCreateReview(body);
+            if (api.endpoint === 'contacts') return handleCreateContact(body);
             return Promise.resolve(jsonResponse({
                 data: null,
                 error: 'This is a static preview - that action is not available here. Please contact us directly.'
