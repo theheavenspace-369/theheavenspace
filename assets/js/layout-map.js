@@ -680,6 +680,7 @@ function uploadedFileUrl(kind, filename) {
 
 function getSelectedLayoutSvg() {
     const filename = selectedLayout?.svg_filename || selectedLayout?.svg_file || selectedLayout?.layout_file || 'kubera_layout.svg';
+    if (selectedLayout?.static_asset_path) return ASSET_URL(`/${String(selectedLayout.static_asset_path).replace(/^\/+/, '')}`);
     return uploadedFileUrl('layouts', filename);
 }
 
